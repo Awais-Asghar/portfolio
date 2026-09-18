@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { buildSystemPrompt } from "@/data/chat-knowledge";
+import { profile } from "@/data/profile";
 import { contactSchema, sendContactEmail } from "@/lib/email";
 import { chatTools, createStream, drainStream, getGroq, MODEL_CANDIDATES, type Msg } from "@/lib/groq";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
@@ -75,63 +76,47 @@ export async function POST(req: Request) {
           },
           MODEL_CANDIDATES[0],
         );
-        const { toolCalls } = await drainStream(first, write);
+        let wroteText = false;
+        const { toolCalls } = await drainStream(first, (t) => {
+          wroteText = true;
+          write(t);
+        });
         if (toolCalls.length === 0) return controller.close();
 
-        // Execute tool(s), then pass 2: stream the confirmation.
-        const assistantMsg: Msg = {
-          role: "assistant",
-          content: "",
-          tool_calls: toolCalls.map((t) => ({
-            id: t.id,
-            type: "function" as const,
-            function: { name: t.name, arguments: t.args },
-          })),
-        };
-        const toolResults: Msg[] = [];
+        // Execute the tool, then reply deterministically. A second model pass
+        // with the tool result took 40s+ to start on Groq (2026-09), so the
+        // confirmation is written here instead.
+        const outcomes: { ok: boolean; error?: string }[] = [];
         for (const t of toolCalls) {
-          let result: string;
-          if (t.name === "send_message_to_awais") {
-            let input: unknown = {};
-            try {
-              input = JSON.parse(t.args || "{}");
-            } catch {}
-            const valid = contactSchema.safeParse(input);
-            if (!valid.success) {
-              result = JSON.stringify({ ok: false, error: valid.error.issues[0]?.message ?? "Invalid input" });
-            } else {
-              const sent = await sendContactEmail(valid.data, "chat");
-              result = JSON.stringify(
-                sent.ok
-                  ? { ok: true }
-                  : {
-                      ok: false,
-                      error:
-                        sent.reason === "unconfigured"
-                          ? "Email delivery is not configured on this site yet."
-                          : "Delivery failed.",
-                    },
-              );
-            }
-          } else {
-            result = JSON.stringify({ ok: false, error: "Unknown tool" });
+          if (t.name !== "send_message_to_awais") {
+            outcomes.push({ ok: false, error: "Unknown tool" });
+            continue;
           }
-          toolResults.push({ role: "tool", tool_call_id: t.id, content: result });
+          let input: unknown = {};
+          try {
+            input = JSON.parse(t.args || "{}");
+          } catch {}
+          const valid = contactSchema.safeParse(input);
+          if (!valid.success) {
+            outcomes.push({ ok: false, error: valid.error.issues[0]?.message ?? "Invalid input" });
+            continue;
+          }
+          const sent = await sendContactEmail(valid.data, "chat");
+          outcomes.push(
+            sent.ok
+              ? { ok: true }
+              : { ok: false, error: sent.reason === "unconfigured" ? "email delivery is not configured on this site yet" : "delivery failed" },
+          );
         }
+        const failed = outcomes.find((o) => !o.ok);
+        if (wroteText) write("
 
-        const { stream: second } = await createStream(
-          groq,
-          {
-            messages: [...messages, assistantMsg, ...toolResults],
-            temperature: 0.3,
-            max_completion_tokens: 400,
-            reasoning_effort: "low",
-            include_reasoning: false,
-            stream: true,
-          },
-          model,
+");
+        write(
+          failed
+            ? `Sorry, I could not deliver that message (${failed.error}). You can email Awais directly at ${profile.email}.`
+            : "Done. Your message is in Awais's inbox and he usually replies within a day. Happy to answer anything else about his work.",
         );
-        await drainStream(second, write);
         controller.close();
       } catch (err) {
         console.error("chat error", err);
