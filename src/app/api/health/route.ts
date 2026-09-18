@@ -38,11 +38,41 @@ export async function GET(req: Request) {
     const r = await groq.chat.completions.create({
       model: MODEL,
       messages: [{ role: "user", content: "Say OK." }],
-      max_tokens: 5,
+      max_completion_tokens: 40,
+      reasoning_effort: "low",
+      include_reasoning: false,
     });
     result.completion = r.choices[0]?.message?.content ?? null;
   } catch (e) {
     result.completionError = e instanceof Error ? e.message : String(e);
+  }
+  if (probe === "2") {
+    // Mirror the chat route: streaming + tools.
+    try {
+      const stream = await groq.chat.completions.create({
+        model: MODEL,
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: "Reply with the single word OK." },
+        ],
+        tools: [
+          {
+            type: "function",
+            function: { name: "noop", description: "Does nothing.", parameters: { type: "object", properties: {} } },
+          },
+        ],
+        tool_choice: "auto",
+        max_completion_tokens: 60,
+        reasoning_effort: "low",
+        include_reasoning: false,
+        stream: true,
+      });
+      let acc = "";
+      for await (const chunk of stream) acc += chunk.choices[0]?.delta?.content ?? "";
+      result.streamWithTools = acc;
+    } catch (e) {
+      result.streamError = e instanceof Error ? e.message : String(e);
+    }
   }
   return NextResponse.json({ ...base, probe: result });
 }

@@ -118,7 +118,7 @@ export async function POST(req: Request) {
         // Pass 1: stream the answer; watch for a tool call.
         const { stream: first, model } = await createStream(
           groq,
-          { messages, tools, tool_choice: "auto", temperature: 0.4, max_tokens: 700, stream: true },
+          { messages, tools, tool_choice: "auto", temperature: 0.4, max_completion_tokens: 900, reasoning_effort: "low", include_reasoning: false, stream: true },
           MODEL_CANDIDATES[0],
         );
 
@@ -180,7 +180,7 @@ export async function POST(req: Request) {
 
         const { stream: second } = await createStream(
           groq,
-          { messages: [...messages, assistantMsg, ...toolResults], temperature: 0.3, max_tokens: 300, stream: true },
+          { messages: [...messages, assistantMsg, ...toolResults], temperature: 0.3, max_completion_tokens: 400, reasoning_effort: "low", include_reasoning: false, stream: true },
           model,
         );
         for await (const chunk of second) {
