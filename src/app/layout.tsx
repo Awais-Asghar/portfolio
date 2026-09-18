@@ -7,6 +7,7 @@ import { ThemeScript } from "@/components/layout/ThemeScript";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { profile } from "@/data/profile";
 import { siteUrl } from "@/lib/site";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <ChatWidget />
+        <SpeedInsights />
       </body>
     </html>
   );
