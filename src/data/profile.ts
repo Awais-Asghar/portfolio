@@ -84,7 +84,7 @@ export const profile = {
       role: "Chip Design Trainee Engineer",
       org: "NUST Chip Design Centre (NCDC)",
       location: "Islamabad, Pakistan",
-      period: "Feb 2025 – 2026",
+      period: "Feb 2025 – May 2026",
       supervisor: "Dr. Hammad M. Cheema",
       bullets: [
         "RTL design, simulation and FPGA implementation in SystemVerilog; hands-on with RISC-V, computer architecture, Linux and C.",
