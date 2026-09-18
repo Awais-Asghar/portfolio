@@ -42,7 +42,7 @@ export type Msg = Groq.Chat.Completions.ChatCompletionMessageParam;
 export type StreamParams = Omit<ChatCompletionCreateParamsStreaming, "model">;
 
 export function getGroq() {
-  return new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: GROQ_TIMEOUT_MS, maxRetries: 1 });
+  return new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: GROQ_TIMEOUT_MS, maxRetries: 0 });
 }
 
 export function isModelNotFound(e: unknown) {

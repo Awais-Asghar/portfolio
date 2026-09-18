@@ -27,6 +27,15 @@ const greeting: Msg = {
   content: `Hi, I'm ${profile.firstName}'s assistant. Ask me about his projects, research, skills or background. I can also pass a message straight to his inbox.`,
 };
 
+/** The model likes typographic dashes; plain punctuation reads more naturally. Applied to the accumulated text so streaming chunk boundaries do not matter. */
+function humanize(s: string) {
+  return s
+    .replace(/‑/g, "-")
+    .replace(/(\d)\s*–\s*(\d)/g, "$1-$2")
+    .replace(/\s*[–—―]\s*/g, ", ")
+    .replace(/,\s*,/g, ",");
+}
+
 let idCounter = 0;
 const nextId = () => `m${Date.now()}_${idCounter++}`;
 
@@ -278,7 +287,7 @@ function Bubble({ msg, streaming }: { msg: Msg; streaming: boolean }) {
           mine ? "rounded-br-md bg-ink text-paper" : "rounded-bl-md border border-rule bg-paper-2 text-ink",
         )}
       >
-        {msg.content ? <Linkified text={msg.content} /> : null}
+        {msg.content ? <Linkified text={mine ? msg.content : humanize(msg.content)} /> : null}
         {streaming && <span className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] animate-blink bg-current" />}
       </div>
     </div>
