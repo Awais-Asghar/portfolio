@@ -55,6 +55,7 @@ src/
     resume/page.tsx            embedded PDF + downloads
     api/chat/route.ts          Groq streaming + send_message_to_awais tool
     api/contact/route.ts       Resend contact endpoint
+    api/health/route.ts        GET: booleans for which env vars production has (never values)
     opengraph-image.tsx, sitemap.ts, robots.ts, icon.svg, not-found.tsx
   components/
     layout/  Nav, Footer, ThemeToggle, ThemeScript
@@ -156,7 +157,7 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - Vercel team `awais-asghar-s-projects` (`team_Ese4jZpHuBuArx5kzf9qsmOy`).
 - **Linking (one-time, manual)**: the Vercel API could not link the repo from the agent session (the Vercel GitHub App did not have access to the new repository; two API-created projects never materialised). Do it in the dashboard: vercel.com/new → Import Git Repository → pick `Awais-Asghar/portfolio` (click "Adjust GitHub App Permissions" and grant the repo if it is not listed) → Framework: Next.js (auto) → add env vars from §8 → Deploy. Name the project `awais-portfolio` (`awais-asghar` was reported as taken by the API).
 - **Live**: https://awais-asghar.vercel.app (linked by Awais in the dashboard on 2026-09-18). `NEXT_PUBLIC_SITE_URL` is optional: `src/lib/site.ts` falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, and the sitemap/OG tags already resolve to the live URL. Set it only when a custom domain is added.
-- Env vars only apply to deployments created after they were added: after adding a key, push a commit or click Redeploy.
+- Env vars only apply to deployments created after they were added: after adding a key, push a commit or click Redeploy. Verify with `GET /api/health` (`chat`, `email` must be `true`).
 - Build: `next build` (Turbopack). Project pages are prerendered for all slugs (`generateStaticParams`, `dynamicParams=false`) and READMEs revalidate every 24h.
 - Custom domain: add in Vercel → Domains, then set `NEXT_PUBLIC_SITE_URL` and redeploy.
 
