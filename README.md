@@ -1,6 +1,6 @@
 # Awais Asghar — portfolio
 
-**Live:** https://awais-asghar.vercel.app
+**Live:** https://awais-portfolio-phi-six.vercel.app
 
 Personal site for Awais Asghar, an electrical engineer (NUST, 2026) working where machine learning meets constrained hardware: FPGA accelerators, computer vision, LLM applications and embedded systems. Every public project is categorised, illustrated with a generated thumbnail, and documented in one place, with an assistant that answers questions about the work and can pass a message straight to his inbox.
 
