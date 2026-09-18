@@ -1,0 +1,259 @@
+%-------------------------
+% Awais Asghar — Hardware / FPGA / Embedded resume
+% Jake's Resume template (https://github.com/jakegut/resume), adapted.
+% Build: tectonic Awais_Asghar_Hardware.tex   (or pdflatex on Overleaf)
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Awais Asghar} \\ \vspace{3pt}
+    \small Hardware Engineer \\ \vspace{3pt}
+    \small +1 250 507 9045 $|$ \href{mailto:aasghar.bee22seecs@seecs.edu.pk}{\underline{aasghar.bee22seecs@seecs.edu.pk}} $|$
+    \href{https://www.linkedin.com/in/awais--asghar}{\underline{LinkedIn}} $|$
+    \href{https://github.com/Awais-Asghar}{\underline{GitHub}} $|$
+    \href{https://awais-asghar.vercel.app}{\underline{Portfolio}}
+\end{center}
+
+%-----------INTERESTS-----------
+\section{Interests}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     FPGA Design, RTL / SystemVerilog, RISC-V \& Computer Architecture, Hardware Accelerators for ML, Hardware-Software Co-Design, Embedded Systems, RTOS, Edge AI
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National University of Sciences and Technology (NUST)}{Islamabad, Pakistan}
+      {Bachelor of Engineering in Electrical Engineering}{Sept 2022 -- June 2026}
+      \resumeItemListStart
+        \resumeItem{CGPA: 3.63/4.0 \quad Specialization GPA: 3.94/4.0 \quad Merit Scholarship, 2024 -- 2026}
+        \resumeItem{Senior Design Thesis: ML-Based Hardware Accelerator for Real-Time Image Segmentation on FPGA}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Chip Design Trainee Engineer}{Feb 2025 -- 2026}
+      {NUST Chip Design Centre (NCDC)}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Designed, simulated and implemented digital systems in SystemVerilog on Xilinx and Intel FPGAs, covering RTL design, verification, timing closure and on-board bring-up under Dr. Hammad M. Cheema}
+        \resumeItem{Built a 5-stage pipelined RV32I RISC-V processor with hazard detection, forwarding and pipeline registers; verified on a Nexys A7 (Artix-7) at 100 MHz with roughly 4$\times$ the throughput of the single-cycle design}
+        \resumeItem{Designed a reprogrammable FPGA anti-theft car security system on the DE1-SoC: FSM control, sensor debouncing, siren generation and a fuel-pump safety interlock, verified glitch-free in ModelSim}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Embedded Systems Design Research Intern}{May 2024 -- Aug 2024}
+      {ESDAC Lab, NUST}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Developed and deployed Embedded Linux on FPGA and DE1-SoC boards under Dr. Usman Zabit: bootloaders, kernel configuration, GPIO bring-up, memory-management tuning and real-time data handling}
+        \resumeItem{Tools: Intel Quartus, Verilog, Linux kernel, RealVNC, FileZilla}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Mitacs Globalink Research Intern}{Summer 2026}
+      {NRC Herzberg Institute of Astrophysics}{Victoria, BC, Canada}
+      \resumeItemListStart
+        \resumeItem{Applied ML research on large astrophysical image datasets under Dr. Sebastien Fabbro: model development, HDF5 data pipelines and scientific computing workflows on the CANFAR platform}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Deep Learning Research Intern}{June 2024 -- Sept 2024}
+      {Deep Learning Lab, SINES, NUST}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Trained and benchmarked CNN and transfer-learning models with CUDA-accelerated PyTorch and TensorFlow, the model-side groundwork for later FPGA deployment}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Selected Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{FPGA U-Net Accelerator for Image Segmentation} $|$ \emph{SystemVerilog, Vitis HLS, Zybo Z7-20}}{2025 -- 2026}
+          \resumeItemListStart
+            \resumeItem{Final year project: hardware-software co-design of a U-Net segmentation accelerator on a Zynq-7000 SoC, from training and INT8 quantization to RTL and bitstream}
+            \resumeItem{Compressed the model 56$\times$ to 570 KB so it fits in on-chip BRAM; 97\% pixel accuracy and 72\% mIoU on the CARLA driving dataset at 1.65 -- 2.66 W, with 68/68 RTL testbenches passing}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{5-Stage Pipelined RISC-V Processor on FPGA} $|$ \emph{SystemVerilog, Vivado} $|$ \href{https://github.com/Awais-Asghar/5-Stage-Pipelined-RISC-V-Processor-on-FPGA}{\underline{Github Repo}}}{2025}
+          \resumeItemListStart
+            \resumeItem{IF/ID/EX/MEM/WB pipeline supporting the full RV32I ISA (R, I, S, B, U, J) with a hazard unit, data forwarding and pipeline registers; simulated and tested on hardware at 100 MHz}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Single-Cycle RISC-V Processor on FPGA} $|$ \emph{SystemVerilog, Vivado} $|$ \href{https://github.com/Awais-Asghar/Single-Cycle-RISC-V-Processor-Implemented-on-FPGA}{\underline{Github Repo}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Complete datapath and control: instruction and data memories, ALU, immediate generator, branch comparator and control unit for the whole RV32I instruction set}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{FPGA-Based Smart Car Security System} $|$ \emph{Verilog, Quartus, DE1-SoC} $|$ \href{https://github.com/Awais-Asghar/FPGA-Based-Smart-Car-Security-System}{\underline{Github Repo}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Concealed, reprogrammable anti-theft FSM with debounced sensor inputs, timed siren generation and a fuel-pump interlock; timers and debouncers verified against expected durations}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{FreeRTOS Smart Energy Monitor} $|$ \emph{STM32F746, FreeRTOS, ESP32, C} $|$ \href{https://github.com/Awais-Asghar/FreeRTOS-Based-Smart-Energy-Monitor-using-STM32}{\underline{Github Repo}}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Independent RTOS tasks for ZMPT101B/ACS712 acquisition, Vrms/Irms/kWh computation with DC-offset removal and local display; UART link to an ESP32 that publishes to a Firebase dashboard}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Real-Time Fabric Defect Detection on Jetson Nano} $|$ \emph{Python, OpenCV, Jetson Nano} $|$ \href{https://github.com/Awais-Asghar/Real-Time-Fabric-Defect-Detection-on-Jetson-Nano}{\underline{Github Repo}}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Classical multi-method pipeline (GLCM, FFT, Gabor, variance, background subtraction, edge-Hough) with IoU box fusion, optimized for live camera input on a low-power edge device; paper in progress}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Crowd-Sourced AQI Monitoring System} $|$ \emph{Arduino, C++, PMS5003, MQ-series} $|$ \href{https://github.com/Awais-Asghar/Crowd-Sourced-AQI-Monitoring-System}{\underline{Github Repo}}}{Nov 2024}
+          \resumeItemListStart
+            \resumeItem{Six-sensor IoT node measuring PM2.5, PM10, CO, temperature, humidity and pressure with real-time AQI estimation at 99\% agreement with US Embassy Islamabad readings}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Fully Automated Egg Incubator} $|$ \emph{ATmega328P, Embedded C, Proteus} $|$ \href{https://github.com/Awais-Asghar/Fully-Automated-Egg-Incubator}{\underline{Github Repo}}}{June 2024}
+          \resumeItemListStart
+            \resumeItem{Closed-loop temperature and humidity control with stepper-motor egg turning, LCD status and buzzer alarms; 100\% pigeon-egg hatch rate in 18 days}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Cache Architecture Simulator} $|$ \emph{C, C++} $|$ \href{https://github.com/Awais-Asghar/Cache-Architecture-Simulator-Design}{\underline{Github Repo}}}{Oct 2025}
+          \resumeItemListStart
+            \resumeItem{From-scratch cache simulator replaying memory traces to measure hits, misses and evictions, with an analysis of LRU versus random replacement}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{HDL \& FPGA}{: SystemVerilog, Verilog, RTL Design, RISC-V (RV32I), Computer Architecture, Digital System Design, Timing Analysis, Zybo Z7-20 (Zynq-7000), Nexys A7 (Artix-7), DE1-SoC} \\
+     \textbf{EDA \& Simulation}{: Xilinx Vivado, Vitis HLS, Intel Quartus, ModelSim, Proteus, NI Multisim, PSpice, LabVIEW, Venus (RISC-V)} \\
+     \textbf{Embedded Systems}{: STM32 (F746), ESP32, Arduino / ATmega328P / ATmega16A, Pixhawk, FreeRTOS, Embedded Linux, Jetson Nano, UART / I2C / SPI, sensor interfacing, PID control} \\
+     \textbf{Languages}{: C, C++, Embedded C, Assembly, Python, CUDA, MATLAB / Simulink} \\
+     \textbf{ML for the Edge}{: PyTorch, TensorFlow, Keras, OpenCV, model quantization (INT8), PYNQ} \\
+     \textbf{Tools}{: Git / GitHub, Linux, IAR Workbench, Atmel Studio, Arduino IDE, Mission Planner / ArduPilot, Jupyter, LaTeX}
+    }}
+ \end{itemize}
+
+%-----------PUBLICATIONS-----------
+\section{Publications (In Progress)}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Design of a Novel Lightweight U-Net Architecture for Efficient Semantic Segmentation:} based on the FPGA accelerator FYP and driving-scene segmentation research at NUST SEECS \\
+     \textbf{Real-Time Fabric Defect Detection on Edge Devices Using Classical Computer Vision:} multi-method pipeline deployed on Jetson Nano
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications and Relevant Coursework}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{NUST \& NCDC Coursework}: Digital System Design, Computer Architecture, RISC-V, Embedded System Design, Digital Signal Processing, Signals and Systems, Electronic Circuit Design, Control Systems, Communication Systems, Electrical Machines, Linux \\
+     \textbf{Deep Learning Specialization} (5-Course Series), deeplearning.ai: neural networks, CNNs, sequence models, hyperparameter tuning \\
+     \textbf{Machine Learning Specialization} (3-Course Series), deeplearning.ai: supervised and unsupervised learning, reinforcement learning \\
+     \textbf{Deep Learning Course Series}, MIT 6.S191: computer vision, generative modeling, transformers
+    }}
+ \end{itemize}
+
+%-----------HONORS-----------
+\section{Honors and Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \begin{itemize}[leftmargin=0.15in]
+       \item Mitacs Globalink Research Internship: fully funded international placement at NRC Herzberg, Canada (Summer 2026)
+       \item Millennium Fellow: selected among the top 4\% globally by the UN Academic Impact and Millennium Campus Network
+       \item NUST SEECS Merit Scholarship, 2024 -- 2026
+       \item Dean's Honor List: recognized five times for outstanding academic performance
+       \item Prime Minister Youth Laptop Scheme, 2025, awarded for academic excellence
+       \item 3rd place, BISE Multan Pre-Engineering, among 70,000+ students
+       \item Intermediate Scholarship: 100\% fee waiver based on exceptional academic performance
+     \end{itemize}
+    }}
+ \end{itemize}
+
+\end{document}

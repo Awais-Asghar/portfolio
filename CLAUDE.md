@@ -44,7 +44,7 @@ claude.md                      this file
 scripts/generate-thumbnails.ts deterministic SVG thumbnail generator
 public/
   thumbnails/<slug>.svg        generated, committed (one per project)
-  resume/*.pdf                 two resumes (AI Engineer, Hardware/EE)
+  resume/*.pdf                 two resumes (AI Engineer, Hardware); source for the Hardware one in resume/hardware/
   images/avatar.jpg            portrait (replace with a real headshot any time)
 src/
   app/
@@ -155,7 +155,8 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - GitHub: `Awais-Asghar/portfolio`, branch `main` = production. Commit and push; Vercel builds automatically once the project is linked. Preview deployments for other branches.
 - Vercel team `awais-asghar-s-projects` (`team_Ese4jZpHuBuArx5kzf9qsmOy`).
 - **Linking (one-time, manual)**: the Vercel API could not link the repo from the agent session (the Vercel GitHub App did not have access to the new repository; two API-created projects never materialised). Do it in the dashboard: vercel.com/new → Import Git Repository → pick `Awais-Asghar/portfolio` (click "Adjust GitHub App Permissions" and grant the repo if it is not listed) → Framework: Next.js (auto) → add env vars from §8 → Deploy. Name the project `awais-portfolio` (`awais-asghar` was reported as taken by the API).
-- After the first deploy, put the production URL in README.md and set `NEXT_PUBLIC_SITE_URL`.
+- **Live**: https://awais-asghar.vercel.app (linked by Awais in the dashboard on 2026-09-18). `NEXT_PUBLIC_SITE_URL` is optional: `src/lib/site.ts` falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, and the sitemap/OG tags already resolve to the live URL. Set it only when a custom domain is added.
+- Env vars only apply to deployments created after they were added: after adding a key, push a commit or click Redeploy.
 - Build: `next build` (Turbopack). Project pages are prerendered for all slugs (`generateStaticParams`, `dynamicParams=false`) and READMEs revalidate every 24h.
 - Custom domain: add in Vercel → Domains, then set `NEXT_PUBLIC_SITE_URL` and redeploy.
 
@@ -173,6 +174,12 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - **2026-09-18** Motion: never use `initial={false}` under reduced motion. The server renders the hidden initial style and the client then skips the animation, leaving sections invisible. Always animate; set `transition.duration = 0` when `useReducedMotion()` is true.
 - **2026-09-18** OG image fonts are bundled as WOFF in `src/app/fonts/` and read with `fs` (traced via `outputFileTracingIncludes`); fetching from Google Fonts at build time was unreliable.
 - **2026-09-18** README images render through plain `<img>` (not `next/image`) because GitHub asset URLs are unbounded; sanitiser allows `img`, `picture`, `details`, `video`, `align`/`width` attributes.
+
+## 10b. Resumes
+
+- `public/resume/Awais_Asghar_AI_Engineer.pdf` (source kept by Awais on Overleaf) and `public/resume/Awais_Asghar_Hardware.pdf`.
+- The Hardware resume source is `resume/hardware/Awais_Asghar_Hardware.tex`, Jake's Resume template (pdfTeX-only lines `glyphtounicode` removed so it also builds with Tectonic/XeTeX). Build with `tectonic Awais_Asghar_Hardware.tex` or upload to Overleaf, then copy the PDF to `public/resume/`.
+- `profile.resumes` in `src/data/profile.ts` lists both; the resume page previews whichever is selected (`ResumeViewer`).
 
 ## 11. Backlog / ideas
 

@@ -27,9 +27,9 @@ export const profile = {
       note: "Machine learning, computer vision and LLM work. Best for AI and research roles.",
     },
     {
-      id: "ee",
+      id: "hardware",
       label: "Hardware / EE resume",
-      file: "/resume/Awais_Asghar_EE.pdf",
+      file: "/resume/Awais_Asghar_Hardware.pdf",
       note: "FPGA, RTL and embedded systems work. Best for hardware and chip design roles.",
     },
   ],

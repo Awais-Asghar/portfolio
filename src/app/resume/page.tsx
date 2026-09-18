@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Download } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/Button";
+import { ResumeViewer } from "@/components/home/ResumeViewer";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
-  const primary = profile.resumes[0];
   return (
     <div className="container-x pt-14 md:pt-20">
       <header className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
@@ -35,25 +35,7 @@ export default function ResumePage() {
         </div>
       </header>
 
-      <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-        {profile.resumes.map((r) => (
-          <li key={r.id} className="rounded-md border border-rule p-5">
-            <p className="font-serif text-xl">{r.label}</p>
-            <p className="mt-1 text-sm text-muted">{r.note}</p>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-10 overflow-hidden rounded-md border border-rule bg-paper-2">
-        <iframe
-          src={`${primary.file}#view=FitH&toolbar=0`}
-          title={`${profile.name} resume`}
-          className="h-[80vh] w-full"
-        />
-      </div>
-      <p className="mt-3 text-center text-xs text-muted">
-        If the preview does not load in your browser, use the download buttons above.
-      </p>
+      <ResumeViewer />
     </div>
   );
 }
