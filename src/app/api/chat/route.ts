@@ -118,9 +118,7 @@ export async function POST(req: Request) {
           );
         }
         const failed = outcomes.find((o) => !o.ok);
-        if (wroteText) write("
-
-");
+        if (wroteText) write("\n\n");
         write(
           failed
             ? `Sorry, I could not deliver that message (${failed.error}). You can email Awais directly at ${profile.email}.`
