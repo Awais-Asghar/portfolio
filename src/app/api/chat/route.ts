@@ -10,6 +10,15 @@ import { siteUrl } from "@/lib/site";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
+/** Strip typographic dashes the model likes to insert; plain hyphens and commas read more naturally. */
+function humanize(s: string) {
+  return s
+    .replace(/‑/g, "-")
+    .replace(/\s*[—―]\s*/g, ", ")
+    .replace(/(\d)\s*–\s*(\d)/g, "$1-$2")
+    .replace(/\s*–\s*/g, ", ");
+}
+
 const MAX_TURNS = 12;
 const MAX_CHARS = 2000;
 
@@ -59,7 +68,7 @@ export async function POST(req: Request) {
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const write = (s: string) => controller.enqueue(encoder.encode(s));
+      const write = (s: string) => controller.enqueue(encoder.encode(humanize(s)));
       try {
         // Pass 1: stream the answer; watch for a tool call.
         const { stream: first, model } = await createStream(

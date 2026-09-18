@@ -50,7 +50,13 @@ export function isModelNotFound(e: unknown) {
   return /model_not_found|does not exist|decommissioned/i.test(msg) || (e as { status?: number })?.status === 404;
 }
 
-/** Streams a completion, falling back through MODEL_CANDIDATES on model errors. */
+/** Rate limits are per model on Groq, so a 429 / 413 on one model is worth retrying on the next. */
+export function isFallbackWorthy(e: unknown) {
+  const status = (e as { status?: number })?.status;
+  return isModelNotFound(e) || status === 429 || status === 413 || status === 503;
+}
+
+/** Streams a completion, falling back through MODEL_CANDIDATES on model errors and rate limits. */
 export async function createStream(groq: Groq, params: StreamParams, startAt: string) {
   const order = MODEL_CANDIDATES.slice(Math.max(0, MODEL_CANDIDATES.indexOf(startAt)));
   let lastErr: unknown;
@@ -60,7 +66,7 @@ export async function createStream(groq: Groq, params: StreamParams, startAt: st
       return { stream, model };
     } catch (e) {
       lastErr = e;
-      if (!isModelNotFound(e)) throw e;
+      if (!isFallbackWorthy(e)) throw e;
     }
   }
   throw lastErr ?? new Error("No Groq model available");
