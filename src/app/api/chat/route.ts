@@ -10,7 +10,7 @@ import { siteUrl } from "@/lib/site";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const MAX_TURNS = 12;
+const MAX_TURNS = 4;
 const MAX_CHARS = 2000;
 
 const bodySchema = z.object({

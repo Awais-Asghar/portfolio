@@ -1,5 +1,5 @@
 import { profile } from "./profile";
-import { projects, githubUrl } from "./projects";
+import { projects } from "./projects";
 import { categoryById } from "./categories";
 
 /**
@@ -13,26 +13,26 @@ import { categoryById } from "./categories";
  */
 export function buildSystemPrompt(siteUrl: string): string {
   const exp = profile.experience
-    .map((e) => `- ${e.role}, ${e.org}, ${e.period}${e.supervisor ? ` (with ${e.supervisor})` : ""}: ${e.bullets[0]}`)
+    .map((e) => `- ${e.role}, ${e.org}, ${e.period}${e.supervisor ? ` (with ${e.supervisor})` : ""}: ${e.bullets[0].slice(0, 220)}`)
     .join("\n");
 
   const edu = profile.education.map((e) => `${e.degree}, ${e.school}, ${e.period}. ${e.details.join("; ")}.`).join(" ");
   const honors = profile.honors.map((h) => `${h.title} (${h.year})`).join("; ");
   const pubs = profile.publications.map((p) => `"${p.title}" (${p.status.toLowerCase()})`).join("; ");
-  const skills = profile.skills.map((s) => `${s.group}: ${s.items.join(", ")}`).join(". ");
+  const skills = profile.skills.map((s) => `${s.group}: ${s.items.slice(0, 6).join(", ")}`).join(". ");
   const leadership = profile.leadership.map((l) => `${l.title} (${l.org})`).join("; ");
 
   const projs = projects
     .map((p) => {
       const cat = categoryById[p.category].short;
       const metrics = p.metrics?.map((m) => `${m.value} ${m.label}`).join(", ");
-      const flags = [p.featured ? "featured" : "", p.isPrivate ? "private repo" : "", p.live ? `live ${p.live}` : ""]
+      const flags = [p.isPrivate ? "private repo" : "", p.live ? `live ${p.live}` : ""]
         .filter(Boolean)
         .join("; ");
       if (!p.featured) {
-        return `- ${p.title} (${p.year}, ${cat}): ${p.tagline}${metrics ? ` ${metrics}.` : ""} ${siteUrl}/projects/${p.slug}`;
+        return `- ${p.title} (${p.year}, ${cat}) [${p.slug}]: ${p.tagline}`;
       }
-      return `- ${p.title} (${p.year}, ${cat}): ${p.tagline} ${p.summary} Tech: ${p.tech.slice(0, 6).join(", ")}.${metrics ? ` Numbers: ${metrics}.` : ""}${flags ? ` [${flags}]` : ""} Page: ${siteUrl}/projects/${p.slug}${p.isPrivate ? "" : ` Repo: ${githubUrl(p)}`}`;
+      return `- ${p.title} (${p.year}, ${cat}) [${p.slug}]: ${p.tagline} ${p.summary}${metrics ? ` Numbers: ${metrics}.` : ""}${flags ? ` (${flags})` : ""}`;
     })
     .join("\n");
 
@@ -69,6 +69,7 @@ Honors: ${honors}.
 Leadership: ${leadership}.
 Skills: ${skills}.
 
-## Projects (${projects.length}; all at ${siteUrl}/projects)
+## Projects (${projects.length}; list at ${siteUrl}/projects)
+Each line is "Title (year, area) [slug]: description". A project's page is ${siteUrl}/projects/<slug> and its code is https://github.com/Awais-Asghar unless marked private. The first eight are featured.
 ${projs}`;
 }
