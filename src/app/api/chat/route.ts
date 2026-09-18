@@ -1,4 +1,5 @@
 import Groq from "groq-sdk";
+import type { ChatCompletionCreateParamsStreaming } from "groq-sdk/resources/chat/completions";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { buildSystemPrompt } from "@/data/chat-knowledge";
@@ -57,7 +58,7 @@ const tools: Groq.Chat.Completions.ChatCompletionTool[] = [
 ];
 
 type Msg = Groq.Chat.Completions.ChatCompletionMessageParam;
-type StreamParams = Omit<Groq.Chat.Completions.ChatCompletionCreateParamsStreaming, "model">;
+type StreamParams = Omit<ChatCompletionCreateParamsStreaming, "model">;
 
 function isModelNotFound(e: unknown) {
   const msg = e instanceof Error ? e.message : String(e);
