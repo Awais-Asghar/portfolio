@@ -1,47 +1,66 @@
+<div align="center">
+
 # Awais Asghar — portfolio
 
-**Live:** https://awais-asghar.vercel.app
+**[awais-asghar.vercel.app](https://awais-asghar.vercel.app)**
 
-Personal site for Awais Asghar, an electrical engineer (NUST, 2026) working where machine learning meets constrained hardware: FPGA accelerators, computer vision, LLM applications and embedded systems. Every public project is categorised, illustrated with a generated thumbnail, and documented in one place, with an assistant that answers questions about the work and can pass a message straight to his inbox.
+Electrical engineer working where machine learning meets constrained hardware:
+FPGA accelerators, computer vision, LLM applications and embedded systems.
 
-![Home page](docs/screenshot-home.jpg)
+![Home page](docs/home.jpg)
+
+</div>
 
 ## What's on the site
 
-- **41 projects across 8 disciplines** (AI/ML, computer vision, LLMs & agents, FPGA & digital design, embedded & IoT, robotics, web, HPC). The grid filters by category and searches across tools and tags. Each project page renders its GitHub README in place, refreshed daily.
-- **Generated thumbnails.** Every project has its own deterministic SVG illustration drawn by a small motif renderer (a star field with a drifting object for the TNO detector, woven fabric with a flagged defect, a five-stage pipeline, an ECG trace, a state machine, and so on). `npm run thumbs` regenerates all of them.
-- **Ask about Awais.** A chat assistant on Groq (`openai/gpt-oss-120b`, with automatic fallback to smaller models) that answers only from the site's own content, links to the relevant project pages, and can email Awais a visitor's message after collecting their name and address.
-- **Contact form** delivered through Resend, with a honeypot, validation and rate limiting.
-- **Two resumes** (AI Engineer and Hardware/EE, both in Jake's LaTeX template) with an inline preview switcher.
-- Light and dark themes, reduced-motion support, Open Graph image, sitemap, JSON-LD, and a `/api/health` endpoint that reports which integrations are configured.
+**41 projects, 8 disciplines, one place.** Everything I have built, from a RISC-V core in SystemVerilog to a receipt-reading ledger app, filterable by discipline and searchable across tools and tags. Each project page pulls its README straight from GitHub and renders it in place, refreshed daily.
 
-## Stack
+![Projects](docs/projects.jpg)
 
-Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS v4 · motion · groq-sdk · Resend · react-markdown · Vercel
+**An illustration per project, drawn in code.** No stock art and no screenshots. A generator reads the project list and draws a motif for each one from a seed taken from its slug, so the output is identical on every run and a new project is one entry plus `npm run thumbs`. The trans-Neptunian object detector gets a star field with a faint body drifting across five frames, the fabric inspector gets woven cloth with a flagged defect, the pipelined processor gets its five stages and a forwarding path, the incubator gets an egg tray and a humidity trace.
 
-## Develop
+**An assistant that knows the work.** Ask it about a project, a board, a paper or availability and it answers from the site's own content, links the relevant project page, and declines anything off topic. It can also take your name, address and message and deliver them to my inbox without you leaving the page.
+
+<div align="center"><img src="docs/chat.jpg" alt="Ask about Awais" width="420"></div>
+
+**And the rest.** A contact form with validation, a honeypot and rate limiting. Two resumes with an inline preview switcher. Light and dark themes, reduced-motion support, a generated Open Graph card, sitemap and JSON-LD.
+
+![Project page in dark mode](docs/project-dark.jpg)
+
+## How it's built
+
+| | |
+|---|---|
+| Framework | Next.js 16, App Router, Turbopack |
+| UI | React 19, TypeScript, Tailwind CSS v4, motion |
+| Chat | Groq `openai/gpt-oss-120b`, falling back to smaller models on rate limits |
+| Email | Resend |
+| Content | typed files in `src/data`, no CMS and no database |
+| Hosting | Vercel, deployed on every push to `main` |
+
+Content lives in three files. `profile.ts` holds the bio, experience, honors and skills, `projects.ts` holds every project, and `categories.ts` defines the eight disciplines. Adding a project is one entry plus a thumbnail run, and the grid, the detail page, the sitemap and the assistant all pick it up, because the assistant's knowledge is built from the same file the pages render from.
+
+## Running it
 
 ```bash
 npm install
-cp .env.example .env.local   # add GROQ_API_KEY and RESEND_API_KEY
+cp .env.example .env.local   # GROQ_API_KEY and RESEND_API_KEY
 npm run dev                  # http://localhost:3000
 ```
 
-| Script | What it does |
+The site builds and runs without either key. The chat and the form detect that and fall back to an email link rather than failing.
+
+| Script | Purpose |
 |---|---|
-| `npm run build` | production build (type-checks too) |
-| `npm run check` | `tsc --noEmit` + ESLint |
-| `npm run thumbs` | regenerate `public/thumbnails/*.svg` from `src/data/projects.ts` |
-| `npm run prompt-size` | print the chatbot system prompt size (keep it under ~5k tokens for Groq's free tier) |
+| `npm run build` | production build, type-checks as it goes |
+| `npm run check` | `tsc --noEmit` and ESLint |
+| `npm run thumbs` | regenerate every thumbnail from `src/data/projects.ts` |
+| `npm run prompt-size` | print the assistant's prompt size, which has to fit Groq's per-minute budget |
 
-Content lives in `src/data/`: `profile.ts` (bio, experience, honors, skills), `projects.ts` (every project), `categories.ts`. Adding a project is one entry in `projects.ts` plus `npm run thumbs`; the grid, detail page, sitemap and chatbot all pick it up.
+`GET /api/health` reports the deployed commit and which integrations the running deployment can see.
 
-The Hardware resume source is in `resume/hardware/` and builds with `tectonic Awais_Asghar_Hardware.tex` (or Overleaf).
+The Hardware resume is written in Jake's LaTeX template under `resume/hardware/` and builds with `tectonic Awais_Asghar_Hardware.tex`.
 
-## Deployment
+## Docs
 
-Pushes to `main` deploy automatically on Vercel. Environment variables (`GROQ_API_KEY`, `RESEND_API_KEY`, optional `GITHUB_TOKEN`, `GROQ_MODEL`, `NEXT_PUBLIC_SITE_URL`) are set in the Vercel dashboard; `GET /api/health` confirms which ones the running deployment sees.
-
-## Project docs
-
-Design system, content model, chatbot architecture, decisions and backlog are documented in [`claude.md`](./claude.md).
+The design system, content model, assistant architecture, deployment notes and a dated decision log are in [`claude.md`](./claude.md).
