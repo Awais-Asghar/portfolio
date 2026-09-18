@@ -13,6 +13,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "groq-sdk": "^1.6.0",
     "lucide-react": "^1.47.0",
