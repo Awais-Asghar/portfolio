@@ -108,6 +108,8 @@ export async function POST(req: Request) {
     .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }));
 
   const messages: Msg[] = [{ role: "system", content: buildSystemPrompt(siteUrl) }, ...history];
+  // With the x-debug header the failure text includes the upstream error (never the key).
+  const debug = req.headers.get("x-debug") === "1";
   const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
   const encoder = new TextEncoder();
 
