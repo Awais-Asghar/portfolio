@@ -157,9 +157,10 @@ export function ChatWidget() {
             key="launcher"
             type="button"
             onClick={() => setOpen(true)}
-            initial={reduce ? false : { opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: reduce ? 0 : 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.25 }}
             aria-label="Open chat assistant"
             className="fixed bottom-5 right-5 z-50 inline-flex h-12 items-center gap-2 rounded-full bg-ink pl-4 pr-5 text-sm font-medium text-paper shadow-card transition hover:bg-accent hover:text-accent-ink md:bottom-7 md:right-7"
           >
@@ -175,10 +176,10 @@ export function ChatWidget() {
             key="panel"
             role="dialog"
             aria-label="Chat with Awais's assistant"
-            initial={reduce ? false : { opacity: 0, y: 16, scale: 0.98 }}
+            initial={{ opacity: 0, y: reduce ? 0 : 16, scale: reduce ? 1 : 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            transition={reduce ? { duration: 0 } : { duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 flex flex-col bg-paper md:inset-auto md:bottom-7 md:right-7 md:h-[min(640px,calc(100vh-56px))] md:w-[400px] md:rounded-xl md:border md:border-rule md:shadow-card"
           >
             <header className="flex items-center justify-between border-b border-rule px-4 py-3">

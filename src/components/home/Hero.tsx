@@ -10,14 +10,15 @@ import { Button } from "@/components/ui/Button";
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const anim = (i: number) =>
-    reduce
-      ? {}
-      : {
-          initial: { opacity: 0, y: 16 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] as const },
-        };
+  // Always render the same initial/animate pair so server and client markup match;
+  // reduced motion only shortens the transition to zero.
+  const anim = (i: number) => ({
+    initial: { opacity: 0, y: reduce ? 0 : 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: reduce
+      ? { duration: 0 }
+      : { duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] as const },
+  });
 
   return (
     <section className="container-x pt-14 md:pt-24">
