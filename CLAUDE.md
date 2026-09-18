@@ -21,7 +21,7 @@ Live site: see §9. Source: `github.com/Awais-Asghar/portfolio`.
 | Motion | `motion` (Framer Motion) for reveals, hero and chat panel; all respects `prefers-reduced-motion` |
 | Fonts | `next/font/google`: Fraunces (display serif), Inter (body), JetBrains Mono (metadata) |
 | Markdown | `react-markdown` + `remark-gfm` + `rehype-raw` + `rehype-sanitize` |
-| Chat LLM | Groq, `llama-3.3-70b-versatile` (override with `GROQ_MODEL`) via `groq-sdk` |
+| Chat LLM | Groq via `groq-sdk`; default `openai/gpt-oss-120b`, falls back to `openai/gpt-oss-20b` then `qwen/qwen3.8-27b` on model-not-found (override with `GROQ_MODEL`) |
 | Email | Resend via `resend` SDK |
 | Validation | `zod` v4 |
 | Icons | `lucide-react` v1 (brand icons live in `src/components/ui/icons.tsx`) |
@@ -146,7 +146,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 | `CONTACT_TO_EMAIL` | yes (set) | `aasghar.bee22seecs@seecs.edu.pk` |
 | `CONTACT_FROM_EMAIL` | optional | after verifying a domain in Resend |
 | `GITHUB_TOKEN` | optional | raises README fetch limit (60/h unauthenticated is enough for 37 public repos + daily ISR) |
-| `GROQ_MODEL` | optional | defaults to `llama-3.3-70b-versatile` |
+| `GROQ_MODEL` | optional | defaults to `openai/gpt-oss-120b`; see `MODEL_CANDIDATES` in `api/chat/route.ts` |
 | `NEXT_PUBLIC_SITE_URL` | optional | falls back to Vercel's production URL |
 
 Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → Settings → Environment Variables → add → **Redeploy** (env changes need a new deployment).
@@ -156,7 +156,7 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - GitHub: `Awais-Asghar/portfolio`, branch `main` = production. Commit and push; Vercel builds automatically once the project is linked. Preview deployments for other branches.
 - Vercel team `awais-asghar-s-projects` (`team_Ese4jZpHuBuArx5kzf9qsmOy`).
 - **Linking (one-time, manual)**: the Vercel API could not link the repo from the agent session (the Vercel GitHub App did not have access to the new repository; two API-created projects never materialised). Do it in the dashboard: vercel.com/new → Import Git Repository → pick `Awais-Asghar/portfolio` (click "Adjust GitHub App Permissions" and grant the repo if it is not listed) → Framework: Next.js (auto) → add env vars from §8 → Deploy. Name the project `awais-portfolio` (`awais-asghar` was reported as taken by the API).
-- **Live**: https://awais-asghar.vercel.app (linked by Awais in the dashboard on 2026-09-18). `NEXT_PUBLIC_SITE_URL` is optional: `src/lib/site.ts` falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, and the sitemap/OG tags already resolve to the live URL. Set it only when a custom domain is added.
+- **Live**: two Vercel projects ended up linked to the repo on 2026-09-18: `awais-asghar` (domain awais-asghar.vercel.app, created via the API, no env vars) and `awais-portfolio` (domain awais-portfolio-phi-six.vercel.app, created by Awais in the dashboard, has the keys). Keep one: recommended is to delete `awais-asghar`, then rename `awais-portfolio` → `awais-asghar` so it takes the short domain, or add the env vars to `awais-asghar` and delete the other. `NEXT_PUBLIC_SITE_URL` is optional: `src/lib/site.ts` falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, and the sitemap/OG tags already resolve to the live URL. Set it only when a custom domain is added.
 - Env vars only apply to deployments created after they were added: after adding a key, push a commit or click Redeploy. Verify with `GET /api/health` (`chat`, `email` must be `true`).
 - Build: `next build` (Turbopack). Project pages are prerendered for all slugs (`generateStaticParams`, `dynamicParams=false`) and READMEs revalidate every 24h.
 - Custom domain: add in Vercel → Domains, then set `NEXT_PUBLIC_SITE_URL` and redeploy.
@@ -164,7 +164,7 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 ## 10. Decision log
 
 - **2026-09-18** Visual direction: *clean editorial light* (user choice over dark circuit / neon). Dark mode kept as a toggle.
-- **2026-09-18** Chat LLM: Groq Llama 3.3 70B, free tier (user choice over Anthropic / Gemini). Model is env-overridable.
+- **2026-09-18** Chat LLM: Groq, free tier (user choice over Anthropic / Gemini). Llama 3.3 70B was the plan, but Groq had already retired it; the account exposes `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`, `groq/compound`. Default is gpt-oss-120b with fallbacks. Check `GET /api/health?probe=1` (lists live models) when chat breaks.
 - **2026-09-18** Email: Resend (user choice over Web3Forms / Gmail SMTP). Sender stays `onboarding@resend.dev` until a domain exists.
 - **2026-09-18** Thumbnails: designed generative SVG per project (user choice over AI images / screenshots). Deterministic so diffs stay clean.
 - **2026-09-18** Four repos are private (`FPGA-U-Net-Accelerator`, `FYP-AI-Accelerator`, `tno_detection`, `cashflow`). They are listed with a "Private repo" badge, no README render and no source link; their summaries only restate what the public CV already says. Make them public to enable README rendering with no code change.

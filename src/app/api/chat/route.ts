@@ -9,7 +9,18 @@ import { siteUrl } from "@/lib/site";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+/**
+ * Model candidates, tried in order. Groq retires models without notice
+ * (llama-3.3-70b-versatile disappeared in 2026), so a "model not found"
+ * error falls through to the next candidate instead of breaking the chat.
+ */
+export const MODEL_CANDIDATES = [
+  ...new Set(
+    [process.env.GROQ_MODEL, "openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b"].filter(
+      (m): m is string => Boolean(m),
+    ),
+  ),
+];
 const MAX_TURNS = 12;
 const MAX_CHARS = 2000;
 
@@ -46,6 +57,28 @@ const tools: Groq.Chat.Completions.ChatCompletionTool[] = [
 ];
 
 type Msg = Groq.Chat.Completions.ChatCompletionMessageParam;
+type StreamParams = Omit<Groq.Chat.Completions.ChatCompletionCreateParamsStreaming, "model">;
+
+function isModelNotFound(e: unknown) {
+  const msg = e instanceof Error ? e.message : String(e);
+  return /model_not_found|does not exist|decommissioned/i.test(msg) || (e as { status?: number })?.status === 404;
+}
+
+/** Streams a completion, falling back through MODEL_CANDIDATES on model errors. */
+async function createStream(groq: Groq, params: StreamParams, startAt: string) {
+  const order = MODEL_CANDIDATES.slice(Math.max(0, MODEL_CANDIDATES.indexOf(startAt)));
+  let lastErr: unknown;
+  for (const model of order) {
+    try {
+      const stream = await groq.chat.completions.create({ ...params, model });
+      return { stream, model };
+    } catch (e) {
+      lastErr = e;
+      if (!isModelNotFound(e)) throw e;
+    }
+  }
+  throw lastErr ?? new Error("No Groq model available");
+}
 
 export async function POST(req: Request) {
   if (!process.env.GROQ_API_KEY) {
@@ -82,15 +115,11 @@ export async function POST(req: Request) {
       const write = (s: string) => controller.enqueue(encoder.encode(s));
       try {
         // Pass 1: stream the answer; watch for a tool call.
-        const first = await groq.chat.completions.create({
-          model: MODEL,
-          messages,
-          tools,
-          tool_choice: "auto",
-          temperature: 0.4,
-          max_tokens: 700,
-          stream: true,
-        });
+        const { stream: first, model } = await createStream(
+          groq,
+          { messages, tools, tool_choice: "auto", temperature: 0.4, max_tokens: 700, stream: true },
+          MODEL_CANDIDATES[0],
+        );
 
         const toolCalls = new Map<number, { id: string; name: string; args: string }>();
         for await (const chunk of first) {
@@ -131,7 +160,15 @@ export async function POST(req: Request) {
             } else {
               const sent = await sendContactEmail(valid.data, "chat");
               result = JSON.stringify(
-                sent.ok ? { ok: true } : { ok: false, error: sent.reason === "unconfigured" ? "Email delivery is not configured on this site yet." : "Delivery failed." },
+                sent.ok
+                  ? { ok: true }
+                  : {
+                      ok: false,
+                      error:
+                        sent.reason === "unconfigured"
+                          ? "Email delivery is not configured on this site yet."
+                          : "Delivery failed.",
+                    },
               );
             }
           } else {
@@ -140,13 +177,11 @@ export async function POST(req: Request) {
           toolResults.push({ role: "tool", tool_call_id: t.id, content: result });
         }
 
-        const second = await groq.chat.completions.create({
-          model: MODEL,
-          messages: [...messages, assistantMsg, ...toolResults],
-          temperature: 0.3,
-          max_tokens: 300,
-          stream: true,
-        });
+        const { stream: second } = await createStream(
+          groq,
+          { messages: [...messages, assistantMsg, ...toolResults], temperature: 0.3, max_tokens: 300, stream: true },
+          model,
+        );
         for await (const chunk of second) {
           const c = chunk.choices[0]?.delta?.content;
           if (c) write(c);
