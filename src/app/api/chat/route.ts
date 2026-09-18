@@ -51,7 +51,12 @@ export async function POST(req: Request) {
     .slice(-MAX_TURNS * 2)
     .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_CHARS) }));
 
-  const messages: Msg[] = [{ role: "system", content: buildSystemPrompt(siteUrl) }, ...history];
+  const focus = history
+    .filter((m) => m.role === "user")
+    .slice(-2)
+    .map((m) => (typeof m.content === "string" ? m.content : ""))
+    .join(" ");
+  const messages: Msg[] = [{ role: "system", content: buildSystemPrompt(siteUrl, focus) }, ...history];
   // With the x-debug header the failure text includes the upstream error (never the key).
   const debug = req.headers.get("x-debug") === "1";
   const groq = getGroq();
@@ -118,7 +123,16 @@ export async function POST(req: Request) {
         controller.close();
       } catch (err) {
         console.error("chat error", err);
-        write("\n\nSorry, something went wrong on my side. You can email Awais directly instead.");
+        const status = (err as { status?: number })?.status;
+        write(
+          status === 429
+            ? "
+
+I'm getting a lot of questions right now and my free quota is briefly used up. Please try again in a minute, or email Awais directly."
+            : "
+
+Sorry, something went wrong on my side. You can email Awais directly instead.",
+        );
         if (debug) write(`\n[debug] ${err instanceof Error ? err.message : String(err)}`);
         controller.close();
       }

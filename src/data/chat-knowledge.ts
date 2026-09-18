@@ -11,7 +11,33 @@ import { categoryById } from "./categories";
  * budget. Keep this under ~5k tokens (about 20k characters); `npm run
  * prompt-size` prints the current figure.
  */
-export function buildSystemPrompt(siteUrl: string): string {
+const STOP = new Set(["the", "and", "for", "with", "what", "which", "his", "has", "have", "does", "did", "how", "about", "tell", "that", "this", "awais", "project", "projects", "one", "any", "are", "was", "were", "you", "can", "please", "sentence", "include", "link", "used", "use"]);
+
+function terms(text: string) {
+  return [...new Set(text.toLowerCase().replace(/[^a-z0-9+#.\s-]/g, " ").split(/\s+/).filter((w) => w.length >= 3 && !STOP.has(w)))];
+}
+
+/** Picks the projects most relevant to the visitor's question (simple term overlap). */
+function relevantSlugs(focus: string, limit = 6) {
+  const q = terms(focus);
+  if (q.length === 0) return new Set<string>();
+  const scored = projects
+    .map((p) => {
+      const hay = [p.title, p.tagline, p.slug, categoryById[p.category].label, ...p.tags, ...p.tech].join(" ").toLowerCase();
+      const score = q.reduce((n, t) => n + (hay.includes(t) ? 1 : 0), 0);
+      return { slug: p.slug, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+  return new Set(scored.map((x) => x.slug));
+}
+
+/**
+ * @param focus the visitor's recent messages; used to decide which projects get full detail.
+ */
+export function buildSystemPrompt(siteUrl: string, focus = ""): string {
+  const detailed = relevantSlugs(focus);
   const exp = profile.experience
     .map((e) => `- ${e.role}, ${e.org}, ${e.period}${e.supervisor ? ` (with ${e.supervisor})` : ""}: ${e.bullets[0].slice(0, 220)}`)
     .join("\n");
@@ -70,6 +96,6 @@ Leadership: ${leadership}.
 Skills: ${skills}.
 
 ## Projects (${projects.length}; list at ${siteUrl}/projects)
-Each line is "Title (year, area) [slug]: description". A project's page is ${siteUrl}/projects/<slug> and its code is https://github.com/Awais-Asghar unless marked private. The first eight are featured.
+A project's page is ${siteUrl}/projects/<slug>; code is on https://github.com/Awais-Asghar unless marked private.
 ${projs}`;
 }
