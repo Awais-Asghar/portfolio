@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint",
     "thumbs": "tsx scripts/generate-thumbnails.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prompt-size": "tsx -e \"import { buildSystemPrompt } from './src/data/chat-knowledge'; const p = buildSystemPrompt('https://example.com'); console.log(p.length + ' chars, ~' + Math.round(p.length / 4) + ' tokens')\""
   },
   "dependencies": {
     "clsx": "^2.1.1",

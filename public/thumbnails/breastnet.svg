@@ -13,6 +13,7 @@
   <rect x="40" y="40" width="1520" height="920" fill="none" stroke="#141416" stroke-opacity="0.35" stroke-width="2"/>
   <text x="90" y="104" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace" font-size="24" letter-spacing="4" fill="#6B6B70">AI &amp; MACHINE LEARNING  ·  2025</text>
   <circle cx="1500" cy="96" r="10" fill="#2F5F63"/>
+  <rect x="1152" y="780" width="388" height="180" fill="#FAF8F3" fill-opacity="0.82" rx="8"/>
   <text x="1510" y="904" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="500" fill="#141416" letter-spacing="-6">0.91</text>
   <text x="1508" y="942" text-anchor="end" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace" font-size="22" letter-spacing="3" fill="#6B6B70">F1 SCORE</text>
 </svg>

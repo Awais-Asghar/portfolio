@@ -193,6 +193,7 @@ export async function POST(req: Request) {
       } catch (err) {
         console.error("chat error", err);
         write("\n\nSorry, something went wrong on my side. You can email Awais directly instead.");
+        if (debug) write(`\n[debug] ${err instanceof Error ? err.message : String(err)}`);
         controller.close();
       }
     },
