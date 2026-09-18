@@ -294,12 +294,28 @@ function Bubble({ msg, streaming }: { msg: Msg; streaming: boolean }) {
   );
 }
 
-/** Turns bare URLs into links and **bold** into <strong>; enough markdown for short answers. */
+/** Renders [text](url) links, bare URLs and **bold**; enough markdown for short answers. */
 function Linkified({ text }: { text: string }) {
-  const parts = text.split(/(https?:\/\/[^\s)]+|\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\[[^\]]+\]\((?:https?:\/\/)?[^\s)]+\)|https?:\/\/[^\s)]+|\*\*[^*]+\*\*)/g);
   return (
     <>
       {parts.map((part, i) => {
+        const md = part.match(/^\[([^\]]+)\]\(((?:https?:\/\/)?[^\s)]+)\)$/);
+        if (md) {
+          const href = md[2].startsWith("http") ? md[2] : `https://${md[2]}`;
+          const internal = typeof window !== "undefined" && href.startsWith(window.location.origin);
+          return (
+            <a
+              key={i}
+              href={href}
+              target={internal ? undefined : "_blank"}
+              rel={internal ? undefined : "noreferrer"}
+              className="underline decoration-1 underline-offset-2 hover:text-accent"
+            >
+              {md[1]}
+            </a>
+          );
+        }
         if (/^https?:\/\//.test(part)) {
           const clean = part.replace(/[.,;:!?]+$/, "");
           const trail = part.slice(clean.length);
