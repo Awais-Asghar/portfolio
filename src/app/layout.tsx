@@ -30,8 +30,8 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — ${profile.headline}`,
-    template: `%s — ${profile.name}`,
+    default: `${profile.name} - ${profile.headline}`,
+    template: `%s - ${profile.name}`,
   },
   description: profile.tagline,
   keywords: [
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: profile.name,
-    title: `${profile.name} — ${profile.headline}`,
+    title: `${profile.name} - ${profile.headline}`,
     description: profile.tagline,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — ${profile.headline}`,
+    title: `${profile.name} - ${profile.headline}`,
     description: profile.tagline,
   },
   robots: { index: true, follow: true },

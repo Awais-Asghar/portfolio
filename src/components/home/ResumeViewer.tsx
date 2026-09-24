@@ -61,7 +61,7 @@ export function ResumeViewer() {
         <iframe
           key={current.id}
           src={`${current.file}#view=FitH&toolbar=0`}
-          title={`${profile.name} — ${current.label}`}
+          title={`${profile.name} - ${current.label}`}
           className="h-[80vh] w-full"
         />
       </div>
