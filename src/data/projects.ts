@@ -27,7 +27,12 @@ export interface Project {
   isPrivate?: boolean;
   fork?: { owner: string; note: string };
   metrics?: Metric[];
-  /** Thumbnail overrides. Defaults come from the category. */
+  /**
+   * Custom thumbnail image (16:10, e.g. "/thumbnails/<slug>.jpg").
+   * When absent, the generated SVG from `npm run thumbs` is used.
+   */
+  thumbnail?: string;
+  /** Generated-thumbnail overrides. Defaults come from the category. */
   motif?: Motif;
   accent?: string;
 }
@@ -39,6 +44,7 @@ export const projects: Project[] = [
   {
     slug: "fpga-unet-accelerator",
     repo: "FPGA-U-Net-Accelerator",
+    thumbnail: "/thumbnails/fpga-unet-accelerator.jpg",
     title: "FPGA U-Net Accelerator",
     tagline: "Real-time semantic segmentation on a Zybo Z7-20 at under 3 W.",
     summary:
@@ -60,6 +66,7 @@ export const projects: Project[] = [
   {
     slug: "pipelined-risc-v",
     repo: "5-Stage-Pipelined-RISC-V-Processor-on-FPGA",
+    thumbnail: "/thumbnails/pipelined-risc-v.jpg",
     title: "5-Stage Pipelined RISC-V Processor",
     tagline: "RV32I core with hazard detection and forwarding, running at 100 MHz on Artix-7.",
     summary:
@@ -95,6 +102,7 @@ export const projects: Project[] = [
   {
     slug: "fabric-defect-detection",
     repo: "Real-Time-Fabric-Defect-Detection-on-Jetson-Nano",
+    thumbnail: "/thumbnails/fabric-defect-detection.jpg",
     title: "Real-Time Fabric Defect Detection",
     tagline: "Six classical detectors fused by IoU, running live on a Jetson Nano.",
     summary:
@@ -113,6 +121,7 @@ export const projects: Project[] = [
   {
     slug: "driving-scene-segmentation",
     repo: "Autonomous-Driving-Scene-Segmentation-with-U-Net",
+    thumbnail: "/thumbnails/driving-scene-segmentation.jpg",
     title: "Lightweight U-Net for Driving Scenes",
     tagline: "A U-Net compressed from 8.7M to 0.53M parameters without losing the skip connections.",
     summary:
@@ -131,6 +140,7 @@ export const projects: Project[] = [
   {
     slug: "smart-energy-monitor",
     repo: "FreeRTOS-Based-Smart-Energy-Monitor-using-STM32",
+    thumbnail: "/thumbnails/smart-energy-monitor.jpg",
     title: "FreeRTOS Smart Energy Monitor",
     tagline: "STM32F746 tasks compute Vrms, Irms and kWh; an ESP32 pushes it to a cloud dashboard.",
     summary:
@@ -148,6 +158,7 @@ export const projects: Project[] = [
   {
     slug: "tno-detection",
     repo: "tno_detection",
+    thumbnail: "/thumbnails/tno-detection.jpg",
     title: "Trans-Neptunian Object Detection",
     tagline: "A spatiotemporal U-Net that finds faint moving objects in telescope image sequences.",
     summary:
@@ -173,6 +184,7 @@ export const projects: Project[] = [
   {
     slug: "cashflow",
     repo: "cashflow",
+    thumbnail: "/thumbnails/cashflow.jpg",
     title: "CashFlow",
     tagline: "A personal ledger that reads your receipts and keeps borrowed money out of your income.",
     summary:
@@ -196,6 +208,7 @@ export const projects: Project[] = [
   {
     slug: "skinsense",
     repo: "SkinSense-Multi-Model-Skin-Cancer-Classifier",
+    thumbnail: "/thumbnails/skinsense.jpg",
     title: "SkinSense: Skin Cancer Classifier",
     tagline: "An ensemble of five models labels a lesion as benign or malignant from one RGB image.",
     summary:
@@ -212,6 +225,7 @@ export const projects: Project[] = [
   {
     slug: "recyclevision",
     repo: "RecycleVision-Automated-Waste-Classification-using-EfficientlNet",
+    thumbnail: "/thumbnails/recyclevision.jpg",
     title: "RecycleVision",
     tagline: "EfficientNetB0 transfer learning sorts waste into six recyclable categories.",
     summary:
@@ -228,6 +242,7 @@ export const projects: Project[] = [
   {
     slug: "cifar100-wideresnet",
     repo: "CIFAR100-WideResNet-Classification-Pipeline",
+    thumbnail: "/thumbnails/cifar100-wideresnet.jpg",
     title: "CIFAR-100 with WideResNet-28×10",
     tagline: "A reproducible high-accuracy training pipeline with MixUp, CutMix and RandAugment.",
     summary:
@@ -241,6 +256,7 @@ export const projects: Project[] = [
   {
     slug: "outfit-classifier",
     repo: "Outfit-Classifier-using-CNN",
+    thumbnail: "/thumbnails/outfit-classifier.jpg",
     title: "Outfit Classifier (Fashion-MNIST)",
     tagline: "A from-scratch CNN that recognizes ten clothing categories.",
     summary:
@@ -254,6 +270,7 @@ export const projects: Project[] = [
   {
     slug: "banknote-svm",
     repo: "Banknote-Authentication-Using-Linear-SVM",
+    thumbnail: "/thumbnails/banknote-svm.jpg",
     title: "Banknote Authentication with a Hand-Coded SVM",
     tagline: "A linear SVM written in pure NumPy that separates genuine notes from counterfeits.",
     summary:
@@ -267,6 +284,7 @@ export const projects: Project[] = [
   {
     slug: "shroomsafe",
     repo: "ShroomSafe-Predicting-Mushroom-Toxicity",
+    thumbnail: "/thumbnails/shroomsafe.jpg",
     title: "ShroomSafe",
     tagline: "Decision trees and random forests decide whether a mushroom is edible or poisonous.",
     summary:
@@ -280,6 +298,7 @@ export const projects: Project[] = [
   {
     slug: "carddefender",
     repo: "CardDefender-Credit-Card-Fraud-Detection-Pipeline",
+    thumbnail: "/thumbnails/carddefender.jpg",
     title: "CardDefender: Fraud Detection",
     tagline: "A fraud pipeline built for an extremely imbalanced transaction dataset.",
     summary:
@@ -292,6 +311,7 @@ export const projects: Project[] = [
   {
     slug: "sentimentflow",
     repo: "SentimentFlow-RNN-and-LSTM-Powered-Tweet-Analysis",
+    thumbnail: "/thumbnails/sentimentflow.jpg",
     title: "SentimentFlow",
     tagline: "RNN and LSTM models compared head-to-head on tweet sentiment.",
     summary:
@@ -318,6 +338,7 @@ export const projects: Project[] = [
   {
     slug: "movie-recommender",
     repo: "Hybrid-Movie-Recommender-System",
+    thumbnail: "/thumbnails/movie-recommender.jpg",
     title: "Hybrid Movie Recommender",
     tagline: "Content-based, collaborative and hybrid recommenders for 2015–2025 releases.",
     summary:
@@ -331,6 +352,7 @@ export const projects: Project[] = [
   {
     slug: "music-genre-classifier",
     repo: "DSP-Based-Music-Genre-Classifier",
+    thumbnail: "/thumbnails/music-genre-classifier.jpg",
     title: "DSP Music Genre Classifier",
     tagline: "Handcrafted DSP features plus a mel-spectrogram CNN for real-time genre detection.",
     summary:
@@ -343,6 +365,7 @@ export const projects: Project[] = [
   {
     slug: "induction-motor-fault-detection",
     repo: "Early-Fault-Detection-for-Induction-Motor-Using-ML",
+    thumbnail: "/thumbnails/induction-motor-fault-detection.jpg",
     title: "Induction Motor Fault Detection",
     tagline: "Simulink motor models plus ML classifiers catch six faults before they cause downtime.",
     summary:
@@ -361,6 +384,7 @@ export const projects: Project[] = [
   {
     slug: "retina-vessel-segmentation",
     repo: "U-Net-Retina-Blood-Vessel-Segmentation",
+    thumbnail: "/thumbnails/retina-vessel-segmentation.jpg",
     title: "Retinal Vessel Segmentation",
     tagline: "A clean, reproducible U-Net pipeline for segmenting blood vessels in fundus images.",
     summary:
@@ -373,6 +397,7 @@ export const projects: Project[] = [
   {
     slug: "stereo-depth-estimation",
     repo: "Stereo-Depth-Estimation",
+    thumbnail: "/thumbnails/stereo-depth-estimation.jpg",
     title: "Stereo Depth Estimation",
     tagline: "Disparity and depth maps from a calibrated stereo pair, with classical vision only.",
     summary:
@@ -385,6 +410,7 @@ export const projects: Project[] = [
   {
     slug: "vehicle-detection",
     repo: "Vehicle-Detection-and-Counting-System",
+    thumbnail: "/thumbnails/vehicle-detection.jpg",
     title: "Vehicle Detection & Counting",
     tagline: "YOLOv4 tracks and counts vehicles in live traffic video.",
     summary:
@@ -400,6 +426,7 @@ export const projects: Project[] = [
   {
     slug: "ai-agents-workshop",
     repo: "AI-Agents-From-Idea-to-Deployment",
+    thumbnail: "/thumbnails/ai-agents-workshop.jpg",
     title: "AI Agents: From Idea to Deployment",
     tagline: "A CrewAI workshop template with planning, research, writing and review agents.",
     summary:
@@ -413,6 +440,7 @@ export const projects: Project[] = [
   {
     slug: "techstore-chatbot",
     repo: "TechStore-Chatbot",
+    thumbnail: "/thumbnails/techstore-chatbot.jpg",
     title: "TechStore Chatbot",
     tagline: "A serverless LLM chat backend for a Pakistani electronics retailer, deployed on Vercel.",
     summary:
@@ -428,6 +456,7 @@ export const projects: Project[] = [
   {
     slug: "fyp-ai-accelerator",
     repo: "FYP-AI-Accelerator",
+    thumbnail: "/thumbnails/fyp-ai-accelerator.jpg",
     title: "AI Accelerator: Co-Design Pipeline",
     tagline: "The step-by-step hardware-software flow behind the U-Net accelerator on Zybo Z7-20.",
     summary:
@@ -442,6 +471,7 @@ export const projects: Project[] = [
   {
     slug: "single-cycle-risc-v",
     repo: "Single-Cycle-RISC-V-Processor-Implemented-on-FPGA",
+    thumbnail: "/thumbnails/single-cycle-risc-v.jpg",
     title: "Single-Cycle RISC-V Processor",
     tagline: "A complete RV32I datapath and control unit on a Nexys A7.",
     summary:
@@ -455,6 +485,7 @@ export const projects: Project[] = [
   {
     slug: "car-security-system",
     repo: "FPGA-Based-Smart-Car-Security-System",
+    thumbnail: "/thumbnails/car-security-system.jpg",
     title: "FPGA Smart Car Security System",
     tagline: "A concealed, reprogrammable anti-theft FSM with siren and fuel-pump interlock.",
     summary:
@@ -498,6 +529,7 @@ export const projects: Project[] = [
   {
     slug: "egg-incubator",
     repo: "Fully-Automated-Egg-Incubator",
+    thumbnail: "/thumbnails/egg-incubator.jpg",
     title: "Fully Automated Egg Incubator",
     tagline: "ATmega328P climate control and egg turning that hatched every pigeon egg in 18 days.",
     summary:
@@ -527,6 +559,7 @@ export const projects: Project[] = [
   {
     slug: "electricity-theft-detection",
     repo: "IoT-Based-Electricity-Theft-Detection",
+    thumbnail: "/thumbnails/electricity-theft-detection.jpg",
     title: "IoT Electricity Theft Detection",
     tagline: "A smart meter that spots tampering and bypass with anomaly alerts.",
     summary:
@@ -571,6 +604,7 @@ export const projects: Project[] = [
   {
     slug: "obstacle-avoiding-robot",
     repo: "Obstacle-Avoiding-Robot",
+    thumbnail: "/thumbnails/obstacle-avoiding-robot.jpg",
     title: "Obstacle-Avoiding Robot",
     tagline: "An ultrasonic rover that stops, reverses and turns around anything in its way.",
     summary:
@@ -583,6 +617,7 @@ export const projects: Project[] = [
   {
     slug: "line-following-robot",
     repo: "Line-Following-Robot",
+    thumbnail: "/thumbnails/line-following-robot.jpg",
     title: "Line-Following Robot",
     tagline: "Two IR sensors and a decision loop keep the car on a black line.",
     summary:
@@ -595,6 +630,7 @@ export const projects: Project[] = [
   {
     slug: "human-following-robot",
     repo: "Human-Following-Robot",
+    thumbnail: "/thumbnails/human-following-robot.jpg",
     title: "Human-Following Robot",
     tagline: "A compact robot that tracks and follows a person with three IR sensors.",
     summary:
@@ -609,6 +645,7 @@ export const projects: Project[] = [
   {
     slug: "verre-optics",
     repo: "Verre-Optics",
+    thumbnail: "/thumbnails/verre-optics.jpg",
     title: "Verre Optics",
     tagline: "Private, in-browser eyewear styling from a single photo. No uploads, no account.",
     summary:
@@ -628,6 +665,7 @@ export const projects: Project[] = [
   {
     slug: "laplace-solver",
     repo: "Laplace-Solver-Supercomputer",
+    thumbnail: "/thumbnails/laplace-solver.jpg",
     title: "Parallel Laplace Solver on HPC",
     tagline: "MPI versus OpenMP for a 2D Jacobi solver on a 128-core AMD EPYC cluster.",
     summary:
@@ -644,6 +682,7 @@ export const projects: Project[] = [
   {
     slug: "maketensor",
     repo: "maketensor",
+    thumbnail: "/thumbnails/maketensor.jpg",
     title: "maketensor",
     tagline: "The data pipeline that turns telescope FITS frames into training-ready HDF5 tensors.",
     summary:
@@ -664,5 +703,8 @@ export const featuredProjects = projects
 export const projectBySlug = (slug: string) => projects.find((p) => p.slug === slug);
 
 export const githubUrl = (p: Project) => `${GH}${p.repo}`;
+
+/** Image shown on the card and the project page: the custom one if set, else the generated SVG. */
+export const thumbnailSrc = (p: Project) => p.thumbnail ?? `/thumbnails/${p.slug}.svg`;
 
 export const projectsByCategory = (id: CategoryId) => projects.filter((p) => p.category === id);

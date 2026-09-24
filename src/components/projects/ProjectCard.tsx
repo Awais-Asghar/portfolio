@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Lock } from "lucide-react";
-import type { Project } from "@/data/projects";
+import { thumbnailSrc, type Project } from "@/data/projects";
 import { CategoryBadge } from "./CategoryBadge";
 import { cn } from "@/lib/utils";
 
@@ -22,12 +22,13 @@ export function ProjectCard({ project: p, size = "md", priority = false, classNa
         aria-label={p.title}
       >
         <Image
-          src={`/thumbnails/${p.slug}.svg`}
+          src={thumbnailSrc(p)}
           alt=""
           width={1600}
           height={1000}
+          sizes={lg ? "(min-width: 1024px) 760px, 100vw" : "(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"}
           priority={priority}
-          unoptimized
+          unoptimized={thumbnailSrc(p).endsWith(".svg")}
           className="aspect-[16/10] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.025]"
         />
         {p.isPrivate && (

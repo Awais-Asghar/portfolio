@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local tool state
 .claude/
+
+# raw thumbnail sources (large PNGs); optimised copies live in public/thumbnails
+/Thumbnails/

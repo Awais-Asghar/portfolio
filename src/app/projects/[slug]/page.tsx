@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, GitFork, Lock } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
-import { projects, projectBySlug, githubUrl } from "@/data/projects";
+import { projects, projectBySlug, githubUrl, thumbnailSrc } from "@/data/projects";
 import { categoryById } from "@/data/categories";
 import { fetchReadme } from "@/lib/github";
 import { CategoryBadge } from "@/components/projects/CategoryBadge";
@@ -131,12 +131,13 @@ export default async function ProjectPage({ params }: Params) {
 
         <div className="mt-12 overflow-hidden rounded-md border border-rule bg-paper-2">
           <Image
-            src={`/thumbnails/${p.slug}.svg`}
+            src={thumbnailSrc(p)}
             alt={`${p.title} thumbnail`}
             width={1600}
             height={1000}
+            sizes="(min-width: 1280px) 1140px, 100vw"
             priority
-            unoptimized
+            unoptimized={thumbnailSrc(p).endsWith(".svg")}
             className="aspect-[16/10] w-full object-cover"
           />
         </div>

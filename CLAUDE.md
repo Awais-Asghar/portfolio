@@ -100,6 +100,8 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 
 **Thumbnails** (`npm run thumbs`): 1600×1000 SVG, paper background, hairline frame, mono category label top-left, accent dot top-right, first metric as a large serif numeral bottom-right (only if ≤ 7 characters). Art is drawn by a motif renderer chosen **per project** in `motifBySlug` inside `scripts/generate-thumbnails.ts` (falls back to the category motif), coloured by the category hue (overridable with `accent`), using a PRNG seeded by the slug so output is stable. There are ~40 renderers (galaxy, fabric, roadscene, retina, stereo, traffic, pipeline, datapath, fsm, accelerator, cacheblocks, particles, eggs, ecg, meter, pid, am, linetrack, follow, face, frames, svm, tree, outliers, sequence, matrix, spectrogram, motor, mosaic, lesion, bins, exam, agents, plus the category defaults). Decision 2026-09-18: Awais asked for project-specific imagery after the category-only motifs made same-category cards look identical. When adding a project, add a `motifBySlug` entry or write a new renderer, re-run, and commit the SVGs.
 
+**Custom thumbnails** (added 2026-09-24): 34 projects now use photorealistic images Awais generated, set through the `thumbnail` field. Seven keep the generated SVG: exam-generator-rag, breastnet (no image supplied) and aqi-monitoring, health-tracker, am-superheterodyne, ball-balancing-pid, cache-simulator (his choice). Raw sources are 1536×1024 PNGs in `/Thumbnails/` (gitignored, ~3 MB each); the committed copies in `public/thumbnails/<slug>.jpg` are centre-cropped to 1536×960 (16:10), mozjpeg q84, ~170 KB. Raster thumbnails go through next/image optimisation with `sizes` hints (SVGs stay `unoptimized`). To add or replace one: drop the PNG in `/Thumbnails/`, crop and encode the same way, set `thumbnail` on the project. For sharp detail-page heroes on retina, supply 2400×1500 or larger.
+
 ## 5. Content model
 
 `src/data/projects.ts` — `Project`:
@@ -116,7 +118,8 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 | `isPrivate?` | private repo: no README render, no source button, "Private repo" badge; summary is limited to what the public CV already states |
 | `fork?` | `{ owner, note }` shown as a badge + note |
 | `metrics?` | up to 3 `{ value, label }`; first one is drawn on the thumbnail |
-| `motif?`, `accent?` | thumbnail overrides |
+| `thumbnail?` | custom 16:10 image, e.g. `/thumbnails/<slug>.jpg`; when absent the generated SVG is used (`thumbnailSrc()` in `projects.ts`) |
+| `motif?`, `accent?` | generated-thumbnail overrides |
 
 **To add a project**: 1) add an entry to `projects.ts`; 2) `npm run thumbs`; 3) `npm run check`; 4) commit including the new SVG; 5) push (Vercel deploys, the chatbot learns it automatically because the system prompt is built from the same file).
 
