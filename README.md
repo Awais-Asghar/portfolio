@@ -17,7 +17,9 @@ FPGA accelerators, computer vision, LLM applications and embedded systems.
 
 ![Projects](docs/projects.jpg)
 
-**An illustration per project, drawn in code.** No stock art and no screenshots. A generator reads the project list and draws a motif for each one from a seed taken from its slug, so the output is identical on every run and a new project is one entry plus `npm run thumbs`. The trans-Neptunian object detector gets a star field with a faint body drifting across five frames, the fabric inspector gets woven cloth with a flagged defect, the pipelined processor gets its five stages and a forwarding path, the incubator gets an egg tray and a humidity trace.
+**A cover image for every project.** Most projects carry a rendered scene of the hardware or system they are about, set through an optional `thumbnail` field. Any project without one falls back to an illustration drawn in code: a generator reads the project list and draws a motif from a seed taken from the slug, so the output is identical on every run. The AQI monitor gets a particle field and a gauge, the PID rig gets its beam and a settling curve, the AM receiver gets its carrier and envelope.
+
+![Selected work](docs/featured.jpg)
 
 **An assistant that knows the work.** Ask it about a project, a board, a paper or availability and it answers from the site's own content, links the relevant project page, and declines anything off topic. It can also take your name, address and message and deliver them to my inbox without you leaving the page.
 
