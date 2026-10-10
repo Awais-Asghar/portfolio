@@ -168,6 +168,7 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - Env vars only apply to deployments created after they were added: after adding a key, push a commit or click Redeploy. Verify with `GET /api/health` (`chat`, `email` must be `true`).
 - Build: `next build` (Turbopack). Project pages are prerendered for all slugs (`generateStaticParams`, `dynamicParams=false`) and READMEs revalidate every 24h.
 - Custom domain: add in Vercel → Domains, then set `NEXT_PUBLIC_SITE_URL` and redeploy.
+- **Google Search Console** (2026-10-10): URL-prefix property for `https://awais-asghar.vercel.app`, verified by the `verification.google` meta tag in `src/app/layout.tsx`. Keep that tag in place or Search Console loses ownership. Sitemap to submit: `sitemap.xml`. If the site moves to a custom domain, add a new property for it (a Domain property via DNS works there).
 
 ## 10. Decision log
 

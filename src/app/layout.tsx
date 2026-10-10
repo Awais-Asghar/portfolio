@@ -62,6 +62,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
+  // Google Search Console ownership proof for https://awais-asghar.vercel.app (URL-prefix property).
+  verification: { google: "xL7f9ZRrDyehYdmi128F6ozgbS55uYpEYKr1GRzqGB8" },
 };
 
 export const viewport: Viewport = {
