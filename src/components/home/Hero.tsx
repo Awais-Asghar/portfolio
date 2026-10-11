@@ -72,13 +72,8 @@ export function Hero() {
               priority
               className="aspect-[4/5] w-full object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#141416]/70 to-transparent p-4 text-[#faf8f3]">
-              <div>
-                <p className="font-serif text-xl leading-none">{profile.name}</p>
-                <p className="mt-1 font-mono text-[0.68rem] uppercase tracking-[0.14em] opacity-80">
-                  {profile.location}
-                </p>
-              </div>
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-[#141416]/70 to-transparent p-4 text-[#faf8f3]">
+              <p className="font-serif text-xl leading-none">{profile.name}</p>
               <a
                 href={profile.links.github}
                 target="_blank"
