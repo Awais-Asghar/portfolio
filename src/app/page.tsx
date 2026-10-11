@@ -29,7 +29,7 @@ export default function HomePage() {
         "@type": "ProfilePage",
         "@id": `${siteUrl}/#profile`,
         url: `${siteUrl}/`,
-        name: `${profile.name} - ${profile.headline}`,
+        name: profile.seoTitle,
         isPartOf: { "@id": `${siteUrl}/#website` },
         mainEntity: { "@id": personId },
       },

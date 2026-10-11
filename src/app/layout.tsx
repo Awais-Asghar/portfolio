@@ -30,10 +30,10 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} - ${profile.headline}`,
+    default: profile.seoTitle,
     template: `%s - ${profile.name}`,
   },
-  description: profile.tagline,
+  description: profile.seoDescription,
   keywords: [
     "Awais Asghar",
     "AI engineer",
@@ -51,14 +51,14 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: profile.name,
-    title: `${profile.name} - ${profile.headline}`,
-    description: profile.tagline,
+    title: profile.seoTitle,
+    description: profile.seoDescription,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} - ${profile.headline}`,
-    description: profile.tagline,
+    title: profile.seoTitle,
+    description: profile.seoDescription,
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
