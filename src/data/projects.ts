@@ -53,8 +53,8 @@ export const projects: Project[] = [
     tags: ["Edge AI", "Segmentation", "Hardware accelerator", "Quantization", "FYP"],
     tech: ["SystemVerilog", "Vivado", "Vitis HLS", "PyTorch", "Python", "Zybo Z7-20", "PYNQ"],
     year: 2026,
+    featured: 4,
     period: "2025 – 2026",
-    featured: 1,
     isPrivate: true,
     metrics: [
       { value: "56×", label: "model compression" },
@@ -75,7 +75,6 @@ export const projects: Project[] = [
     tags: ["Computer architecture", "RISC-V", "Pipelining", "Processor design"],
     tech: ["SystemVerilog", "Vivado", "Nexys A7", "Assembly", "Python"],
     year: 2025,
-    featured: 2,
     metrics: [
       { value: "4×", label: "throughput vs single-cycle" },
       { value: "100 MHz", label: "on Artix-7" },
@@ -111,7 +110,7 @@ export const projects: Project[] = [
     tags: ["Classical CV", "Edge AI", "Industrial inspection", "Paper in progress"],
     tech: ["Python", "OpenCV", "NumPy", "SciPy", "scikit-image", "Jetson Nano"],
     year: 2025,
-    featured: 4,
+    featured: 7,
     metrics: [
       { value: "6", label: "independent detectors" },
       { value: "0", label: "neural networks" },
@@ -130,7 +129,7 @@ export const projects: Project[] = [
     tags: ["Segmentation", "Autonomous driving", "Model compression", "Paper in progress"],
     tech: ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy", "Kaggle"],
     year: 2025,
-    featured: 5,
+    featured: 2,
     metrics: [
       { value: "0.53M", label: "parameters (from 8.7M)" },
       { value: "72%", label: "IoU" },
@@ -149,7 +148,6 @@ export const projects: Project[] = [
     tags: ["RTOS", "IoT", "Power electronics", "Cloud"],
     tech: ["STM32F746", "FreeRTOS", "ESP32", "C/C++", "IAR Workbench", "Firebase", "UART"],
     year: 2025,
-    featured: 6,
     metrics: [
       { value: "3", label: "concurrent RTOS tasks" },
       { value: "Vrms · Irms · kWh", label: "computed on-device" },
@@ -167,8 +165,8 @@ export const projects: Project[] = [
     tags: ["Research", "Astronomy", "Segmentation", "Mitacs"],
     tech: ["PyTorch", "Python", "HDF5", "CANFAR", "Astropy"],
     year: 2026,
+    featured: 1,
     period: "Summer 2026",
-    featured: 7,
     isPrivate: true,
     fork: {
       owner: "sfabbro",
@@ -194,7 +192,6 @@ export const projects: Project[] = [
     tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind 4", "Supabase", "Groq", "Vercel"],
     year: 2026,
     live: "https://usecashflow.vercel.app",
-    featured: 8,
     isPrivate: true,
     metrics: [
       { value: "8", label: "transaction kinds" },
@@ -217,6 +214,7 @@ export const projects: Project[] = [
     tags: ["Medical imaging", "Ensemble", "Classification"],
     tech: ["Python", "Scikit-learn", "XGBoost", "LightGBM", "PyTorch", "Pandas"],
     year: 2023,
+    featured: 6,
     metrics: [
       { value: "91%", label: "accuracy" },
       { value: "0.963", label: "AUC" },
@@ -234,6 +232,7 @@ export const projects: Project[] = [
     tags: ["Transfer learning", "Classification", "Sustainability"],
     tech: ["Python", "TensorFlow", "Keras", "EfficientNetB0", "OpenCV", "Kaggle"],
     year: 2025,
+    featured: 8,
     metrics: [
       { value: "92.9%", label: "test accuracy" },
       { value: "0.93", label: "macro F1" },
@@ -435,6 +434,7 @@ export const projects: Project[] = [
     tags: ["Agents", "CrewAI", "RAG", "Teaching"],
     tech: ["Python", "CrewAI", "LangChain", "FAISS", "Llama 3", "Streamlit"],
     year: 2025,
+    featured: 5,
     metrics: [{ value: "4", label: "cooperating agents" }],
   },
   {

@@ -12,8 +12,8 @@ export function FeaturedProjects() {
       id="work"
       index="01"
       eyebrow="Selected work"
-      title="Eight projects that show the range."
-      intro="Hardware, vision, LLM apps and research, each taken from an idea to something that runs."
+      title="Eight AI projects, from research to deployment."
+      intro="Deep learning research, computer vision, LLM and agent systems, and models taken all the way to edge hardware."
       aside={
         <Link href="/projects" className="link-underline inline-flex items-center gap-2 text-sm">
           All {projects.length} projects <ArrowRight size={14} />
