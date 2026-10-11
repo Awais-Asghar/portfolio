@@ -216,7 +216,7 @@ export const projects: Project[] = [
     category: "ai-ml",
     tags: ["Medical imaging", "Ensemble", "Classification"],
     tech: ["Python", "Scikit-learn", "XGBoost", "LightGBM", "PyTorch", "Pandas"],
-    year: 2024,
+    year: 2023,
     metrics: [
       { value: "91%", label: "accuracy" },
       { value: "0.963", label: "AUC" },

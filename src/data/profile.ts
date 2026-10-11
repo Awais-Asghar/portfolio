@@ -66,7 +66,7 @@ export const profile = {
       period: "Sept 2022 – June 2026",
       details: [
         "CGPA 3.63 / 4.0, specialization GPA 3.94 / 4.0",
-        "Merit scholarship 2024–2026, Dean's Honor List five times",
+        "Merit scholarship 2024–2026, Dean's Honor List four times",
         "Senior design thesis: ML-based hardware accelerator for real-time image segmentation on FPGA",
       ],
     },
@@ -173,7 +173,7 @@ export const profile = {
     },
     {
       title: "Dean's Honor List",
-      detail: "Recognized five times for outstanding academic performance.",
+      detail: "Recognized four times for outstanding academic performance.",
       year: "2022–2026",
     },
     {
@@ -205,7 +205,7 @@ export const profile = {
       detail: "Ran outreach and partnerships for student developer events.",
     },
     {
-      title: "Co-founder, CashFlow",
+      title: "Founder, CashFlow",
       org: "Startup · 2026",
       detail:
         "Building a personal finance app that reads receipts and bank statements with AI and keeps loans and savings out of income. Live at usecashflow.vercel.app.",
