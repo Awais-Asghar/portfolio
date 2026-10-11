@@ -214,7 +214,7 @@ export function ChatWidget() {
                 <div>
                   <p className="text-sm font-medium leading-none">Ask about Awais</p>
                   <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">
-                    {unavailable ? "Offline" : "Assistant"}
+                    {unavailable ? "Offline" : "AI Assistant"}
                   </p>
                 </div>
               </div>
