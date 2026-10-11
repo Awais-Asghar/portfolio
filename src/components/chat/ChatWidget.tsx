@@ -284,7 +284,7 @@ export function ChatWidget() {
                 </button>
               </div>
               <p className="mt-2 text-center font-mono text-[0.6rem] text-muted">
-                Answers come from this site&apos;s content. It may still make mistakes.
+                AI assistant. It can make mistakes.
               </p>
             </form>
           </motion.section>
