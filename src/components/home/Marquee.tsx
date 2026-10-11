@@ -63,7 +63,7 @@ export function Marquee() {
         onClick={() => setPaused((p) => !p)}
         aria-pressed={paused}
         aria-label={paused ? "Play the skills ticker" : "Pause the skills ticker"}
-        className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border border-rule bg-paper text-muted transition hover:border-ink hover:text-ink motion-reduce:hidden md:right-4"
+        className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border border-rule-strong bg-paper text-ink-2 shadow-sm transition hover:border-ink hover:text-ink motion-reduce:hidden md:right-4"
       >
         {paused ? <Play size={11} /> : <Pause size={11} />}
       </button>
