@@ -248,29 +248,23 @@ export const profile = {
       provider: "NUST & NCDC coursework",
     },
   ],
-  /** Tools shown in the hero marquee. Order matters visually. */
-  marquee: [
-    "PyTorch",
-    "TensorFlow",
-    "OpenCV",
-    "SystemVerilog",
-    "RISC-V",
-    "Vivado",
-    "STM32",
-    "FreeRTOS",
-    "Jetson Nano",
-    "LangChain",
-    "FAISS",
-    "Groq",
-    "CUDA",
-    "Scikit-learn",
-    "Next.js",
-    "MATLAB",
-    "ESP32",
-    "Zybo Z7-20",
-    "Python",
-    "C/C++",
-  ],
+  /**
+   * Hero ticker: two rows scrolling in opposite directions (see Marquee.tsx).
+   * Row 1 is AI / ML / DL, row 2 is hardware. Order matters visually: alternate
+   * fields and tools so neither row reads as a plain list.
+   */
+  marquee: {
+    ai: [
+      "Machine Learning", "PyTorch", "Deep Learning", "TensorFlow", "Computer Vision", "OpenCV",
+      "LLMs", "LangChain", "RAG", "FAISS", "AI Agents", "CrewAI", "Python", "Keras",
+      "Scikit-learn", "CUDA", "Groq", "Llama 3",
+    ],
+    hardware: [
+      "FPGA", "SystemVerilog", "RISC-V", "Vivado", "Vitis HLS", "Zybo Z7-20", "Verilog", "Artix-7",
+      "Quartus", "DE1-SoC", "STM32", "FreeRTOS", "ESP32", "Jetson Nano", "Embedded C", "C/C++",
+      "UART / I2C / SPI", "MATLAB / Simulink",
+    ],
+  },
 } as const;
 
 export type Profile = typeof profile;
