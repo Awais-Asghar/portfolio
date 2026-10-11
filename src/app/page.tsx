@@ -6,6 +6,7 @@ import { Experience } from "@/components/home/Experience";
 import { Skills } from "@/components/home/Skills";
 import { Recognition } from "@/components/home/Recognition";
 import { ContactSection } from "@/components/home/ContactSection";
+import { SectionTitle } from "@/components/home/SectionTitle";
 import { profile } from "@/data/profile";
 import { siteUrl } from "@/lib/site";
 
@@ -56,6 +57,7 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <SectionTitle />
       <Hero />
       <Marquee />
       <FeaturedProjects />

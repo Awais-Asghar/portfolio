@@ -81,7 +81,8 @@ src/
     favicon.ico, icon.svg, apple-icon.png, opengraph-image.tsx, sitemap.ts, robots.ts, not-found.tsx
   components/
     layout/  Nav, Footer, ThemeToggle, ThemeScript
-    home/    Hero, Marquee, FeaturedProjects, About, Experience, Skills, Recognition, ContactSection, ResumeViewer
+    home/    Hero, Marquee, FeaturedProjects, About, Experience, Skills, Recognition, ContactSection, ResumeViewer,
+             SectionTitle (tab title follows /#about, /#experience, /#contact links)
     projects/ ProjectCard, ProjectGrid, CategoryBadge, ReadmeRenderer
     chat/    ChatWidget (launcher + panel + streaming client + dash humanizer + auto-growing input)
     ui/      Section, Reveal, Button, Badge, icons
@@ -194,7 +195,7 @@ Local: copy `.env.example` → `.env.local` (none exists on this machine). Produ
 - **Domain history**: Awais linked the repo in the dashboard; two projects briefly coexisted; the spare was deleted, the survivor renamed `awais-asghar`, and the `awais-asghar.vercel.app` alias attached by hand. `VERCEL_PROJECT_PRODUCTION_URL` lagged behind, so `src/lib/site.ts` hardcodes `PRODUCTION_URL = "https://awais-asghar.vercel.app"`. If a custom domain is bought, change that constant (or set `NEXT_PUBLIC_SITE_URL`), and update the README and both resume `.tex` files.
 - Build: `next build` (Turbopack). Project pages are prerendered for all slugs (`generateStaticParams`, `dynamicParams=false`); READMEs revalidate every 24h.
 - **Google Search Console** (2026-10-10): URL-prefix property for `https://awais-asghar.vercel.app`, verified by `verification.google` in `src/app/layout.tsx` (keep it, or ownership is lost). Sitemap `sitemap.xml` submitted 2026-10-10: Success, 44 pages. Home page indexed.
-- **What Google reads**: `<title>` = `profile.seoTitle` ("Awais Asghar - AI Engineer"; the same string is the browser tab, Google title, OG/Twitter title and ProfilePage name), description `profile.seoDescription`, other pages `%s - Awais Asghar`; site name from WebSite JSON-LD `name` "Awais Asghar"; favicon `src/app/favicon.ico` (16/32/48, built from `icon.svg`).
+- **What Google reads**: `<title>` = `profile.seoTitle` ("Awais Asghar - AI Engineer"; the same string is the browser tab, Google title, OG/Twitter title and ProfilePage name), description `profile.seoDescription`, other pages `%s - Awais Asghar`. Home sections reached by nav links get "About - Awais Asghar", "Experience - …", "Contact - …" in the tab via `SectionTitle`, which reads the clicked link's hash (Next uses pushState for same-page hash links, so no hashchange fires). It deliberately ignores scroll position: crawlers render with a tall viewport, and a scroll-spy title could leak into Google's result; site name from WebSite JSON-LD `name` "Awais Asghar"; favicon `src/app/favicon.ico` (16/32/48, built from `icon.svg`).
 
 ## 10. Decision log
 
