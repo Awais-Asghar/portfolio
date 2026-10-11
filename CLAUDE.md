@@ -94,7 +94,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 
 **Layout rules**: sections are `py-20 md:py-28` with a top hairline and a numbered eyebrow (`01 — Selected work`). Cards: 1px `rule` border, 6px radius, thumbnail 16:10, title below the image (magazine style), tech list in mono. Hover: image scales 1.025, title grows an underline. No drop shadows except `shadow-card` on the portrait and chat panel.
 
-**Motion**: `Reveal` fades/rises 18px on scroll (once). Hero staggers 80ms. Skills ticker (`Marquee.tsx`) is two rows: AI/ML/DL (`profile.marquee.ai`, red dots) scrolling left and hardware (`profile.marquee.hardware`, teal dots) scrolling right, 4s per item so both rows move at the same speed, faded edges, pauses on hover/focus, pause button (WCAG 2.2.2). Everything disabled under reduced motion.
+**Motion**: `Reveal` fades/rises 18px on scroll (once). Hero staggers 80ms. Skills ticker (`Marquee.tsx`) is two rows: AI/ML/DL (`profile.marquee.ai`, red dots) scrolling left and hardware (`profile.marquee.hardware`, teal dots) scrolling right, 4s per item so both rows move at the same speed, faded edges, pauses on hover/focus, pause button at the LEFT end (WCAG 2.2.2; on the right it hid under the floating chat launcher on laptop screens). Everything disabled under reduced motion.
 
 **Dark mode**: `ThemeScript` sets `data-theme` before paint from `localStorage.theme` or OS preference; `ThemeToggle` flips it. Tailwind `dark:` variant is remapped to `[data-theme="dark"]`. Thumbnails stay paper-coloured in dark mode by design (they read as printed plates).
 
