@@ -10,22 +10,47 @@ import { profile } from "@/data/profile";
 import { siteUrl } from "@/lib/site";
 
 export default function HomePage() {
+  // WebSite.name is what Google shows as the site name in results (otherwise it falls back to "Vercel").
+  // ProfilePage + Person tell it this page is about Awais.
+  const personId = `${siteUrl}/#person`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: profile.name,
-    url: siteUrl,
-    image: `${siteUrl}${profile.avatar}`,
-    email: profile.email,
-    jobTitle: "AI Engineer",
-    description: profile.tagline,
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "National University of Sciences & Technology (NUST)",
-    },
-    address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
-    sameAs: [profile.links.github, profile.links.linkedin],
-    knowsAbout: [...profile.interests],
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: `${siteUrl}/`,
+        name: profile.name,
+        alternateName: [`${profile.name} Portfolio`, "Awais Asghar - AI Engineer"],
+        inLanguage: "en",
+        publisher: { "@id": personId },
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${siteUrl}/#profile`,
+        url: `${siteUrl}/`,
+        name: `${profile.name} - ${profile.headline}`,
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        mainEntity: { "@id": personId },
+      },
+      {
+        "@type": "Person",
+        "@id": personId,
+        name: profile.name,
+        url: `${siteUrl}/`,
+        image: `${siteUrl}${profile.avatar}`,
+        email: profile.email,
+        jobTitle: "AI Engineer",
+        description: profile.tagline,
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "National University of Sciences & Technology (NUST)",
+        },
+        address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
+        sameAs: [profile.links.github, profile.links.linkedin],
+        knowsAbout: [...profile.interests],
+      },
+    ],
   };
 
   return (
