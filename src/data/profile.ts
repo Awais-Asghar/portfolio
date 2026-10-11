@@ -9,7 +9,7 @@ export const profile = {
   firstName: "Awais",
   headline: "AI engineer working on ML, LLMs and AI agents",
   /** What search engines and link previews show. The hero renders `headline` with its own accent styling. */
-  seoTitle: "Awais Asghar - AI Engineer | AI | ML | DL | LLMs | AI Agents",
+  seoTitle: "Awais Asghar - AI Engineer",
   seoDescription:
     "AI Engineer working on machine learning, deep learning, computer vision, LLMs and AI agents, from research models to FPGA and edge deployment. NUST 2026.",
   tagline:
