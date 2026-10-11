@@ -34,7 +34,7 @@ export function Hero() {
           >
             AI engineer working on{" "}
             <span className="italic text-accent" style={{ fontVariationSettings: '"opsz" 144, "SOFT" 100' }}>
-              ML, LLMs and AI agents
+              {"ML, LLMs and AI agents"}
             </span>
             .
           </motion.h1>
