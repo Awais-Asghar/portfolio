@@ -7,13 +7,13 @@
 export const profile = {
   name: "Awais Asghar",
   firstName: "Awais",
-  headline: "Electrical engineer building AI at the edge",
-  /** What search engines and link previews show. The on-page hero keeps `headline`. */
+  headline: "AI engineer working on ML, LLMs and AI agents",
+  /** What search engines and link previews show. The hero renders `headline` with its own accent styling. */
   seoTitle: "Awais Asghar - AI Engineer | AI | ML | DL | LLMs | AI Agents",
   seoDescription:
     "AI Engineer working on machine learning, deep learning, computer vision, LLMs and AI agents, from research models to FPGA and edge deployment. NUST 2026.",
   tagline:
-    "FPGA accelerators, computer vision and LLM applications. I take models from a notebook to real hardware, and ship the software around them.",
+    "Machine learning, deep learning, LLM apps and agents, from research models to systems that run on real hardware.",
   location: "Islamabad, Pakistan",
   recentLocation: "Victoria, BC, Canada (Mitacs Globalink, summer 2026)",
   email: "aasghar.bee22seecs@seecs.edu.pk",

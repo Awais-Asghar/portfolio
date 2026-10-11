@@ -26,15 +26,15 @@ export function Hero() {
         <div>
           <motion.p {...anim(0)} className="eyebrow">
             <span className="mr-3 text-accent">●</span>
-            Portfolio · {new Date().getFullYear()} · Electrical Engineer, NUST
+            Portfolio · {new Date().getFullYear()} · AI Engineer, NUST
           </motion.p>
           <motion.h1
             {...anim(1)}
             className="mt-6 font-serif text-[2.9rem] font-medium leading-[0.98] tracking-[-0.02em] sm:text-[3.8rem] lg:text-[4.6rem]"
           >
-            Electrical engineer building{" "}
+            AI engineer working on{" "}
             <span className="italic text-accent" style={{ fontVariationSettings: '"opsz" 144, "SOFT" 100' }}>
-              AI at the edge
+              ML, LLMs and AI agents
             </span>
             .
           </motion.h1>
