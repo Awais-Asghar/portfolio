@@ -110,7 +110,7 @@ export const projects: Project[] = [
     tags: ["Classical CV", "Edge AI", "Industrial inspection", "Paper in progress"],
     tech: ["Python", "OpenCV", "NumPy", "SciPy", "scikit-image", "Jetson Nano"],
     year: 2025,
-    featured: 7,
+    featured: 5,
     metrics: [
       { value: "6", label: "independent detectors" },
       { value: "0", label: "neural networks" },
@@ -232,7 +232,7 @@ export const projects: Project[] = [
     tags: ["Transfer learning", "Classification", "Sustainability"],
     tech: ["Python", "TensorFlow", "Keras", "EfficientNetB0", "OpenCV", "Kaggle"],
     year: 2025,
-    featured: 8,
+    featured: 7,
     metrics: [
       { value: "92.9%", label: "test accuracy" },
       { value: "0.93", label: "macro F1" },
@@ -418,6 +418,7 @@ export const projects: Project[] = [
     tags: ["Object detection", "Tracking", "YOLO"],
     tech: ["Python", "OpenCV", "YOLOv4", "PyTorch"],
     year: 2024,
+    featured: 8,
     metrics: [{ value: "90%", label: "detection accuracy" }],
   },
 
@@ -434,7 +435,6 @@ export const projects: Project[] = [
     tags: ["Agents", "CrewAI", "RAG", "Teaching"],
     tech: ["Python", "CrewAI", "LangChain", "FAISS", "Llama 3", "Streamlit"],
     year: 2025,
-    featured: 5,
     metrics: [{ value: "4", label: "cooperating agents" }],
   },
   {
