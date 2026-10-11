@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { ArrowUp, MessageCircle, RotateCcw, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { profile } from "@/data/profile";
@@ -36,6 +36,9 @@ function humanize(s: string) {
     .replace(/,\s*,/g, ",");
 }
 
+/** Message box grows to about nine lines before it starts scrolling. */
+const INPUT_MAX_PX = 200;
+
 let idCounter = 0;
 const nextId = () => `m${Date.now()}_${idCounter++}`;
 
@@ -47,8 +50,19 @@ export function ChatWidget() {
   const [unavailable, setUnavailable] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [inputScrolls, setInputScrolls] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const reduce = useReducedMotion();
+
+  // Grow the message box with its content (up to INPUT_MAX_PX), shrink it back after sending.
+  useLayoutEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    const next = Math.min(el.scrollHeight, INPUT_MAX_PX);
+    el.style.height = `${next}px`;
+    setInputScrolls(el.scrollHeight > INPUT_MAX_PX);
+  }, [input, open]);
 
   useEffect(() => {
     const onOpen = () => setOpen(true);
@@ -200,7 +214,7 @@ export function ChatWidget() {
                 <div>
                   <p className="text-sm font-medium leading-none">Ask about Awais</p>
                   <p className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">
-                    {unavailable ? "Offline" : "Assistant · answers from his portfolio"}
+                    {unavailable ? "Offline" : "Assistant"}
                   </p>
                 </div>
               </div>
@@ -255,7 +269,10 @@ export function ChatWidget() {
                   rows={1}
                   placeholder="Ask anything about Awais…"
                   aria-label="Message"
-                  className="max-h-32 min-h-[40px] flex-1 resize-none bg-transparent px-2 py-2 text-sm outline-none placeholder:text-muted"
+                  className={cn(
+                    "min-h-[40px] flex-1 resize-none bg-transparent px-2 py-2 text-sm leading-relaxed outline-none [scrollbar-width:thin] placeholder:text-muted",
+                    inputScrolls ? "overflow-y-auto" : "overflow-y-hidden",
+                  )}
                 />
                 <button
                   type="submit"

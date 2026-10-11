@@ -80,9 +80,9 @@ export const categories: Category[] = [
   },
   {
     id: "web",
-    label: "Web & Product",
-    short: "Web",
-    blurb: "Shipped web apps with real users, AI features and careful data handling.",
+    label: "Startups",
+    short: "Startup",
+    blurb: "Products I am building and shipping as startups, with real users and AI at the core.",
     hue: "#0D7355",
     motif: "ledger",
   },

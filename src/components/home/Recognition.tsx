@@ -14,7 +14,7 @@ export function Recognition() {
               <Reveal key={p.title} as="li" delay={0.05 * i} className="rounded-md border border-rule p-5">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-serif text-xl font-medium leading-snug">{p.title}</h3>
-                  <Badge tone="accent">{p.status}</Badge>
+                  <Badge tone="accent" className="mt-1 shrink-0 whitespace-nowrap">{p.status}</Badge>
                 </div>
                 <p className="mt-2 text-sm text-muted">{p.note}</p>
               </Reveal>

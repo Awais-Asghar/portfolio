@@ -1,0 +1,232 @@
+%-------------------------
+% Awais Asghar - AI Engineer resume
+% Jake's Resume template (https://github.com/jakegut/resume), adapted.
+% Recreated 2026-10-11 from the Overleaf PDF, with the HamsanTech dates
+% corrected to 2023 and the public Gmail address.
+% Build: tectonic Awais_Asghar_AI_Engineer.tex   (or pdflatex on Overleaf)
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+% 0.4in side margins, matching the original Overleaf version
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\newcommand{\repo}[1]{\href{https://github.com/Awais-Asghar/#1}{\underline{Github Repo}}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge Awais Asghar} \\ \vspace{3pt}
+    \small AI Engineer \\ \vspace{3pt}
+    \small +1 250 507 9045 $|$ \href{mailto:awaisasghara786@gmail.com}{\underline{awaisasghara786@gmail.com}} $|$
+    \href{https://www.linkedin.com/in/awais--asghar}{\underline{LinkedIn}} $|$
+    \href{https://github.com/Awais-Asghar}{\underline{GitHub}}
+\end{center}
+
+%-----------INTERESTS-----------
+\section{Interests}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     Machine Learning, Deep Learning, Computer Vision, Generative AI, LLMs, RAG, Data Science, Agentic AI
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National University of Sciences and Technology (NUST)}{Islamabad, Pakistan}
+      {Bachelor of Engineering in Electrical Engineering}{Sept 2022 - June 2026}
+      \resumeItemListStart
+        \resumeItem{CGPA: 3.63/4.0 \quad Specialization GPA: 3.94/4.0 \quad Merit Scholarship, 2024 - 2026}
+        \resumeItem{Senior Design Thesis: ML-Based Hardware Accelerator for Real-Time Image Segmentation on FPGA}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------RESEARCH EXPERIENCE-----------
+\section{Research Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Mitacs Globalink Research Intern}{Summer 2026}
+      {NRC Herzberg Institute of Astrophysics}{Victoria, BC, Canada}
+      \resumeItemListStart
+        \resumeItem{Conduct applied ML and AI research on large-scale astrophysical datasets, contributing to model development, scientific computing workflows, and data analysis pipelines under Dr. Sebastien Fabbro}
+        \resumeItem{Carrying out end-to-end academic research: literature review, experiment design, result analysis, and scientific documentation}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Deep Learning Research Intern}{June 2024 - Sept 2024}
+      {Deep Learning Lab, SINES, NUST}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Built and evaluated CNN and transfer learning models in PyTorch and TensorFlow with GPU-accelerated training via CUDA, focused on performance benchmarking and model validation}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Machine Learning Research Intern}{June 2023 - Aug 2023}
+      {HamsanTech, NSTP}{Islamabad, Pakistan}
+      \resumeItemListStart
+        \resumeItem{Built a multi-model skin cancer classification pipeline achieving 91\% accuracy and 0.963 AUC using an ensemble of XGBoost, AdaBoost, LightGBM, SVM, and Logistic Regression}
+        \resumeItem{Developed interactive Power BI and Tableau dashboards and ran Excel-based data cleaning and exploratory analysis on real industry datasets}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Selected Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{ML-Based Hardware Accelerator for Image Segmentation} $|$ \emph{Python, PyTorch, Vitis HLS, Vivado}}{2025 - 2026}
+          \resumeItemListStart
+            \resumeItem{Achieved 56x model compression to 570 KB with 97\% pixel accuracy at 2.72W power on a Zybo Z7-20 FPGA, covering the full pipeline from training and quantization to edge deployment}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{AI-Based Exam Generator (RAG)} $|$ \emph{Python, LangChain, Groq API, Llama 3.1} $|$ \repo{AI-Based-Exam-Paper-Generator-using-RAG}}{2025}
+          \resumeItemListStart
+            \resumeItem{Built an end-to-end RAG pipeline combining document ingestion, vector embeddings, semantic retrieval, and LLM-based question generation into a production-ready system}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Lightweight U-Net for Driving Scene Segmentation} $|$ \emph{Python, PyTorch, OpenCV} $|$ \repo{Autonomous-Driving-Scene-Segmentation-with-U-Net}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Compressed a U-Net from 8.7M to 0.53M parameters while holding 72\% IoU, 80\% F1, and 96\% test accuracy on the CARLA simulator dataset; paper in progress}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Real-Time Fabric Defect Detection} $|$ \emph{Python, OpenCV, NumPy, Jetson Nano} $|$ \repo{Real-Time-Fabric-Defect-Detection-on-Jetson-Nano}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Built a classical computer vision pipeline (GLCM, FFT, Gabor filters, IoU-based fusion) for interpretable, low-power defect localization on edge hardware, with no deep learning required; paper in progress}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{RecycleVision: Automated Waste Classification} $|$ \emph{TensorFlow, Keras, EfficientNetB0} $|$ \repo{RecycleVision-Automated-Waste-Classification-using-EfficientlNet}}{Nov 2025}
+          \resumeItemListStart
+            \resumeItem{Trained an EfficientNetB0 transfer learning model reaching 92.9\% test accuracy and a 0.93 macro F1 score across multiple waste categories}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{SkinSense: Multi-Model Skin Cancer Classifier} $|$ \emph{Scikit-learn, XGBoost, PyTorch} $|$ \repo{SkinSense-Multi-Model-Skin-Cancer-Classifier}}{2024}
+          \resumeItemListStart
+            \resumeItem{Built an ensemble classification pipeline achieving 91\% accuracy and 0.963 AUC for single-image RGB skin cancer detection}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Machine Learning \& AI}{: Python, TensorFlow, PyTorch, Keras, Scikit-learn, NumPy, Pandas, OpenCV, SciPy, CUDA} \\
+     \textbf{LLMs \& RAG}{: LangChain, Groq API, Llama 3.1, Vector Databases, Retrieval-Augmented Generation, Prompt Engineering} \\
+     \textbf{Data Analysis \& Visualization}{: Excel, Power BI, Tableau, Matplotlib, Seaborn} \\
+     \textbf{Tools \& Platforms}{: Git/GitHub, Linux, Jupyter Notebook, Google Colab, VS Code, Kaggle, LaTeX}
+    }}
+ \end{itemize}
+
+%-----------PUBLICATIONS-----------
+\section{Publications (In Progress)}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Design of a Novel Lightweight U-Net Architecture for Efficient Semantic Segmentation:} based on FYP and autonomous driving segmentation research at NUST SEECS \\
+     \textbf{Real-Time Fabric Defect Detection on Edge Devices Using Classical Computer Vision:} multi-method pipeline deployed on Jetson Nano
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications and Relevant Coursework}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Machine Learning Specialization} (3-Course Series), deeplearning.ai: supervised ML, advanced learning algorithms, unsupervised learning, reinforcement learning \\
+     \textbf{Deep Learning Specialization} (5-Course Series), deeplearning.ai: neural networks, hyperparameter tuning, CNNs, RNNs, LSTMs, sequence modeling, NLP \\
+     \textbf{Deep Learning Course Series}, MIT 6.S191: computer vision, generative modeling, transformers, LLMs, deep reinforcement learning, AI in biology \\
+     \textbf{NUST Coursework}: Machine Learning, Deep Learning, Computer Vision, Linear Algebra, Calculus, Digital Signal Processing, Signals and Systems
+    }}
+ \end{itemize}
+
+%-----------HONORS-----------
+\section{Honors and Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \begin{itemize}[leftmargin=0.15in]
+       \item Mitacs Globalink Research Internship: fully funded international placement at NRC Herzberg, Canada (Summer 2026)
+       \item Millennium Fellow: selected among the top 4\% globally by the UN Academic Impact and Millennium Campus Network
+       \item NUST SEECS Merit Scholarship, 2024 - 2026
+       \item Dean's Honor List: recognized 4 times for outstanding academic performance
+       \item Prime Minister Youth Laptop Scheme, 2025, awarded for academic excellence
+       \item 3rd place, BISE Multan Pre-Engineering, among 70,000+ students
+       \item Intermediate Scholarship: 100\% fee waiver based on exceptional academic performance
+     \end{itemize}
+    }}
+ \end{itemize}
+
+\end{document}

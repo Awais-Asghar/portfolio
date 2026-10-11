@@ -9,9 +9,14 @@ export function Skills() {
         {profile.skills.map((g, i) => (
           <Reveal key={g.group} delay={0.04 * i} className="bg-paper p-6">
             <p className="eyebrow">{g.group}</p>
-            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-ink-2">
+            <ul className="mt-4 flex flex-wrap gap-2 text-sm text-ink-2">
               {g.items.map((s) => (
-                <li key={s}>{s}</li>
+                <li
+                  key={s}
+                  className="rounded-full border border-rule-strong/70 bg-paper-2 px-3 py-1 leading-snug transition-colors hover:border-ink hover:text-ink"
+                >
+                  {s}
+                </li>
               ))}
             </ul>
           </Reveal>

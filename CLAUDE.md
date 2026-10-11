@@ -125,7 +125,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 
 `src/data/profile.ts` holds bio, education, experience, publications, honors, leadership, skills, coursework, resumes, links and the marquee list. Edit it for any personal change; the chatbot prompt updates with it.
 
-**Categories** (`categories.ts`): AI & Machine Learning · Computer Vision · LLMs, RAG & Agents · FPGA & Digital Design · Embedded & IoT · Robotics · Web & Product · HPC & Systems.
+**Categories** (`categories.ts`): AI & Machine Learning · Computer Vision · LLMs, RAG & Agents · FPGA & Digital Design · Embedded & IoT · Robotics · Startups (id `web`, renamed from "Web & Product" 2026-10-11 at Awais's request: CashFlow and Verre Optics are his startups) · HPC & Systems.
 
 ## 6. Chatbot ("Ask about Awais")
 
@@ -140,7 +140,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 ## 7. Contact and email
 
 - `POST /api/contact` `{ name, email, message, company }`. `company` is a honeypot (hidden field): if filled, respond `{ ok: true }` and drop. zod validation → 400 with the first issue message. Rate limit 5/hour/IP → 429. Missing `RESEND_API_KEY` → 503 and the form shows a `mailto:` fallback. Resend failure → 502.
-- Email: from `Portfolio <onboarding@resend.dev>` (override `CONTACT_FROM_EMAIL` once a domain is verified in Resend), to `CONTACT_TO_EMAIL`, `replyTo` = visitor. Branded HTML + plain-text body. Subject `Portfolio message from <name>` (+ " (via chatbot)").
+- Email: from `Portfolio <onboarding@resend.dev>` (override `CONTACT_FROM_EMAIL` once a domain is verified in Resend), to `CONTACT_TO_EMAIL` or else `RESEND_ACCOUNT_EMAIL` in `src/lib/email.ts` (the NUST address the Resend account was created with), `replyTo` = visitor. **The public address shown on the site is `profile.email` = `awaisasghara786@gmail.com` (changed 2026-10-11) and is deliberately not the delivery address**: Resend's free tier rejects any recipient other than the account owner until a domain is verified. To deliver to Gmail: forward the NUST inbox to Gmail, or verify a domain in Resend and set `CONTACT_TO_EMAIL`. Branded HTML + plain-text body. Subject `Portfolio message from <name>` (+ " (via chatbot)").
 - Resend's free tier only delivers to the account owner's own address until a domain is verified. Sign up with `aasghar.bee22seecs@seecs.edu.pk` so that matches.
 
 ## 8. Environment variables
@@ -149,7 +149,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, etc. Uti
 |---|---|---|
 | `GROQ_API_KEY` | for chat | console.groq.com → API Keys |
 | `RESEND_API_KEY` | for email | resend.com → API Keys |
-| `CONTACT_TO_EMAIL` | yes (set) | `aasghar.bee22seecs@seecs.edu.pk` |
+| `CONTACT_TO_EMAIL` | optional | delivery inbox; unset in production, falls back to `RESEND_ACCOUNT_EMAIL` (the NUST address) |
 | `CONTACT_FROM_EMAIL` | optional | after verifying a domain in Resend |
 | `GITHUB_TOKEN` | optional | raises README fetch limit (60/h unauthenticated is enough for 37 public repos + daily ISR) |
 | `GROQ_MODEL` | optional | defaults to `openai/gpt-oss-120b`; see `MODEL_CANDIDATES` in `api/chat/route.ts` |
@@ -183,11 +183,15 @@ Local: copy `.env.example` → `.env.local`. Production: Vercel → Project → 
 - **2026-09-18** Next.js 16 (latest at scaffold time) instead of the planned 15; conventions checked against bundled docs.
 - **2026-09-18** Motion: never use `initial={false}` under reduced motion. The server renders the hidden initial style and the client then skips the animation, leaving sections invisible. Always animate; set `transition.duration = 0` when `useReducedMotion()` is true.
 - **2026-09-18** OG image fonts are bundled as WOFF in `src/app/fonts/` and read with `fs` (traced via `outputFileTracingIncludes`); fetching from Google Fonts at build time was unreliable.
+- **2026-10-11** Google listed the site as "Vercel" with Vercel's triangle icon. Cause: the create-next-app `src/app/favicon.ico` (the Vercel logo) was never replaced and is listed first in `<head>`, and there was no WebSite structured data. Fix: `favicon.ico` regenerated from `icon.svg` (16/32/48 PNG-in-ICO), `apple-icon.png` (180, full bleed) added, and the home page JSON-LD is now an `@graph` of WebSite (`name` = site name Google shows) + ProfilePage + Person. Never reintroduce the starter favicon. Google picks up icon and site-name changes on its next crawl (days to a few weeks); Request indexing on the home page speeds it up.
+- **2026-10-11** Search/preview title is `profile.seoTitle` ("Awais Asghar - AI Engineer | AI | ML | DL | LLMs | AI Agents", Awais's wording, matching his LinkedIn headline) and description `profile.seoDescription`; used by the home `<title>`, Open Graph, Twitter, the OG image alt and the ProfilePage name. Other pages keep the `%s - Awais Asghar` template. Same day, Awais chose to reposition the page itself as AI Engineer: `profile.headline` = "AI engineer working on ML, LLMs and AI agents" (hero h1 hardcodes the split, italic accent on "ML, LLMs and AI agents"), hero eyebrow "AI Engineer, NUST", and `profile.tagline` rewritten to match (also used by the footer, chatbot prompt and Person JSON-LD).
+- **2026-10-11** Content and UI fixes from Awais: HamsanTech ML internship is June-Aug **2023** (moved to the bottom of the timeline); leadership drops "Co-founder, Robotics & AI training startup" (he was a trainer, not a founder) and adds "Co-founder, CashFlow"; experience dates never wrap (`whitespace-nowrap`, 200px column); publication status badge never wraps; toolkit items render as outlined chips; chat header subtitle is just "Assistant"; the chat message box auto-grows to 200px before scrolling.
 - **2026-09-18** README images render through plain `<img>` (not `next/image`) because GitHub asset URLs are unbounded; sanitiser allows `img`, `picture`, `details`, `video`, `align`/`width` attributes.
 
 ## 10b. Resumes
 
-- `public/resume/Awais_Asghar_AI_Engineer.pdf` (source kept by Awais on Overleaf) and `public/resume/Awais_Asghar_Hardware.pdf`.
+- `public/resume/Awais_Asghar_AI_Engineer.pdf` and `public/resume/Awais_Asghar_Hardware.pdf`, both built from LaTeX source in this repo: `resume/ai-engineer/` and `resume/hardware/`.
+- The AI Engineer source was recreated 2026-10-11 from Awais's Overleaf PDF (text-diffed: identical except the Gmail address and the HamsanTech dates moved to 2023; margins set to 0.4in sides / -0.7in top to match his Overleaf layout). His Overleaf copy still has the old values; the repo source is now the reference.
 - The Hardware resume source is `resume/hardware/Awais_Asghar_Hardware.tex`, Jake's Resume template (pdfTeX-only lines `glyphtounicode` removed so it also builds with Tectonic/XeTeX). Build with `tectonic Awais_Asghar_Hardware.tex` or upload to Overleaf, then copy the PDF to `public/resume/`.
 - `profile.resumes` in `src/data/profile.ts` lists both; the resume page previews whichever is selected (`ResumeViewer`).
 

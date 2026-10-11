@@ -1,7 +1,6 @@
 import "server-only";
 import { Resend } from "resend";
 import { z } from "zod";
-import { profile } from "@/data/profile";
 
 export const contactSchema = z.object({
   name: z.string().trim().min(2, "Please add your name.").max(100),
@@ -13,6 +12,9 @@ export type ContactInput = z.infer<typeof contactSchema>;
 
 export type SendResult = { ok: true; id?: string } | { ok: false; reason: "unconfigured" | "failed"; detail?: string };
 
+/** The address the Resend account was registered with; the only inbox the free tier can deliver to. */
+const RESEND_ACCOUNT_EMAIL = "aasghar.bee22seecs@seecs.edu.pk";
+
 export function emailConfigured() {
   return Boolean(process.env.RESEND_API_KEY);
 }
@@ -23,7 +25,10 @@ const esc = (s: string) =>
 /** Shared by the contact form and the chatbot's send_message tool. */
 export async function sendContactEmail(input: ContactInput, source: "form" | "chat"): Promise<SendResult> {
   if (!emailConfigured()) return { ok: false, reason: "unconfigured" };
-  const to = process.env.CONTACT_TO_EMAIL || profile.email;
+  // Delivery address is deliberately NOT profile.email (the public Gmail). Resend's free tier only
+  // delivers to the Resend account owner's address until a domain is verified, and that account was
+  // created with the NUST address. Set CONTACT_TO_EMAIL to change it once Resend allows it.
+  const to = process.env.CONTACT_TO_EMAIL || RESEND_ACCOUNT_EMAIL;
   const resend = new Resend(process.env.RESEND_API_KEY);
   const when = new Date().toLocaleString("en-GB", { timeZone: "Asia/Karachi", hour12: false });
   const via = source === "chat" ? "the Ask Awais chatbot" : "the contact form";

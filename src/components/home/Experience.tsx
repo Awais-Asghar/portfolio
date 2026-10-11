@@ -13,9 +13,9 @@ export function Experience() {
     >
       <ol className="divide-y divide-rule border-y border-rule">
         {profile.experience.map((e, i) => (
-          <Reveal key={e.role + e.org} as="li" delay={0.04 * i} className="grid gap-4 py-8 md:grid-cols-[180px_1fr] md:gap-10">
+          <Reveal key={e.role + e.org} as="li" delay={0.04 * i} className="grid gap-4 py-8 md:grid-cols-[200px_1fr] md:gap-10">
             <div className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
-              <p>{e.period}</p>
+              <p className="whitespace-nowrap">{e.period}</p>
               <p className="mt-1 normal-case tracking-normal">{e.location}</p>
             </div>
             <div>

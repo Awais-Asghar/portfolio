@@ -16,11 +16,11 @@ export const profile = {
     "Machine learning, deep learning, LLM apps and agents, from research models to systems that run on real hardware.",
   location: "Islamabad, Pakistan",
   recentLocation: "Victoria, BC, Canada (Mitacs Globalink, summer 2026)",
-  email: "aasghar.bee22seecs@seecs.edu.pk",
+  email: "awaisasghara786@gmail.com",
   links: {
     github: "https://github.com/Awais-Asghar",
     linkedin: "https://www.linkedin.com/in/awais--asghar",
-    email: "mailto:aasghar.bee22seecs@seecs.edu.pk",
+    email: "mailto:awaisasghara786@gmail.com",
   },
   avatar: "/images/avatar.jpg",
   resumes: [
@@ -109,18 +109,6 @@ export const profile = {
       tags: ["PyTorch", "TensorFlow", "CUDA"],
     },
     {
-      role: "Machine Learning Research Intern",
-      org: "HamsanTech, NSTP",
-      location: "Islamabad, Pakistan",
-      period: "June 2024 – Aug 2024",
-      supervisor: "Dr. Nazia Perwaiz",
-      bullets: [
-        "Built a multi-model skin cancer classification pipeline (XGBoost, AdaBoost, LightGBM, SVM, logistic regression) reaching 91% accuracy and 0.963 AUC from a single RGB image.",
-        "Delivered Power BI and Tableau dashboards and exploratory analysis on real industry datasets.",
-      ],
-      tags: ["Scikit-learn", "XGBoost", "Power BI", "Tableau"],
-    },
-    {
       role: "Embedded Systems Design Research Intern",
       org: "ESDAC Lab, NUST",
       location: "Islamabad, Pakistan",
@@ -141,6 +129,18 @@ export const profile = {
         "Co-led a robotics and AI boot camp using EV3 kits and model training. Students built competition-winning sumo, speed and obstacle-avoiding robots and later presented them to the Prime Minister of Pakistan.",
       ],
       tags: ["Teaching", "Robotics", "Mentoring"],
+    },
+    {
+      role: "Machine Learning Research Intern",
+      org: "HamsanTech, NSTP",
+      location: "Islamabad, Pakistan",
+      period: "June 2023 – Aug 2023",
+      supervisor: "Dr. Nazia Perwaiz",
+      bullets: [
+        "Built a multi-model skin cancer classification pipeline (XGBoost, AdaBoost, LightGBM, SVM, logistic regression) reaching 91% accuracy and 0.963 AUC from a single RGB image.",
+        "Delivered Power BI and Tableau dashboards and exploratory analysis on real industry datasets.",
+      ],
+      tags: ["Scikit-learn", "XGBoost", "Power BI", "Tableau"],
     },
   ],
   publications: [
@@ -205,10 +205,10 @@ export const profile = {
       detail: "Ran outreach and partnerships for student developer events.",
     },
     {
-      title: "Co-founder, Robotics & AI training startup",
-      org: "Student-led",
+      title: "Co-founder, CashFlow",
+      org: "Startup · 2026",
       detail:
-        "Trained students in AI and robotics; boot-camp graduates presented their projects to the Prime Minister of Pakistan.",
+        "Building a personal finance app that reads receipts and bank statements with AI and keeps loans and savings out of income. Live at usecashflow.vercel.app.",
     },
   ],
   skills: [

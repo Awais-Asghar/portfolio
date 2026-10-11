@@ -67,7 +67,7 @@ export async function POST(req: Request) {
       const write = (s: string) => controller.enqueue(encoder.encode(s));
       try {
         // Pass 1: stream the answer; watch for a tool call.
-        const { stream: first, model } = await createStream(
+        const { stream: first } = await createStream(
           groq,
           {
             messages,
