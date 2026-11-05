@@ -13,7 +13,7 @@ FPGA accelerators, computer vision, LLM applications and embedded systems.
 
 ## What's on the site
 
-**41 projects, 8 disciplines, one place.** Everything I have built, from a RISC-V core in SystemVerilog to a receipt-reading ledger app, filterable by discipline and searchable across tools and tags. Each project page pulls its README straight from GitHub and renders it in place, refreshed daily.
+**43 projects, 8 disciplines, one place.** Everything I have built, from a RISC-V core in SystemVerilog to a receipt-reading ledger app, filterable by discipline and searchable across tools and tags. Each project page pulls its README straight from GitHub and renders it in place, refreshed daily.
 
 ![Projects](docs/projects.jpg)
 

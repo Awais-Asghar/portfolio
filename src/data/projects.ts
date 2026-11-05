@@ -157,24 +157,25 @@ export const projects: Project[] = [
     slug: "tno-detection",
     repo: "tno_detection",
     thumbnail: "/thumbnails/tno-detection.jpg",
-    title: "Trans-Neptunian Object Detection",
-    tagline: "A spatiotemporal U-Net that finds faint moving objects in telescope image sequences.",
+    title: "Faintrail: Trans-Neptunian Object Detection",
+    tagline: "Deep learning that spots faint, icy objects beyond Neptune by their slow motion between telescope images.",
     summary:
-      "Mitacs Globalink research at NRC Herzberg, Victoria. Trans-Neptunian Objects are too faint to see in a single exposure, so the network exploits their slow drift across a sequence of difference images. Synthetic objects rendered with real per-frame PSFs are injected into real data for training; the model accepts a variable number of frames and outputs a dense track map. It replaces the classical shift-and-stack search.",
+      "Mitacs Globalink research at NRC Herzberg, Victoria. Trans-Neptunian Objects are faint, icy bodies in the outer solar system, so the PyTorch network looks for slow motion between telescope images taken hours apart, while stars stay fixed. It works on the CFHT CLASSY survey (about 29 TB of images) on the CANFAR GPU cloud and trains on synthetic objects injected into real images, so it learns from known answers. Reliability rose to 98.5% precision from 81%, with 1,000 of 1,015 reported objects matching the survey's answer key. A separate, fully automatic search with no human checking finds half of all objects down to magnitude 26 on a single night, close to the survey team's manually verified 26.25.",
     category: "ai-ml",
     tags: ["Research", "Astronomy", "Segmentation", "Mitacs"],
     tech: ["PyTorch", "Python", "HDF5", "CANFAR", "Astropy"],
     year: 2026,
     featured: 1,
-    period: "Summer 2026",
+    period: "June 2026 – Oct 2026",
     isPrivate: true,
     fork: {
       owner: "sfabbro",
       note: "Developed with Dr. Sébastien Fabbro at NRC Herzberg.",
     },
     metrics: [
-      { value: "4–20", label: "frames per sequence" },
-      { value: "1", label: "set of weights for all lengths" },
+      { value: "98.5%", label: "precision, up from 81%" },
+      { value: "29 TB", label: "survey images processed" },
+      { value: "Mag 26", label: "automatic search depth" },
     ],
     motif: "segmentation",
     accent: "#2F5F63",
@@ -202,6 +203,23 @@ export const projects: Project[] = [
   },
 
   // ───────────────────── AI & Machine Learning ─────────────────────
+  {
+    slug: "credit-behavior",
+    repo: "credit-behavior-intelligence",
+    title: "Credit Behavior Intelligence",
+    tagline: "A leakage-aware study of 30,000 credit-card customers with PCA, K-Means, DBSCAN and calibrated gradient boosting.",
+    summary:
+      "An end-to-end ML study of the UCI credit-card default dataset that keeps four questions separate: can the variables be compressed, do customers form groups, which records are unusual, and can past behavior estimate default. PCA keeps 95.6% of the variance in 13 components, K-Means finds two stable but overlapping segments, and DBSCAN flags 2.1% of records as sparse. A calibrated histogram gradient boosting model on 54 engineered features reaches 78.8% ROC-AUC and 55.1% F1 on a test set opened only once, with demographic fields left out of prediction. It is an educational analysis, not a credit-decision system.",
+    category: "ai-ml",
+    tags: ["Unsupervised learning", "Classification", "Calibration", "Credit risk", "Data science"],
+    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Kaggle"],
+    year: 2026,
+    metrics: [
+      { value: "78.8%", label: "test ROC-AUC" },
+      { value: "30,000", label: "customer records" },
+      { value: "54", label: "engineered features" },
+    ],
+  },
   {
     slug: "skinsense",
     repo: "SkinSense-Multi-Model-Skin-Cancer-Classifier",
@@ -423,6 +441,23 @@ export const projects: Project[] = [
   },
 
   // ───────────────────────── LLMs, RAG & Agents ─────────────────────────
+  {
+    slug: "suresend",
+    repo: "paypal-ai-hackathon",
+    title: "SureSend: Scam-Safe Payments",
+    tagline: "An AI agent and a trusted family member must clear a held PayPal payment before any money moves.",
+    summary:
+      "Built for the PayPal AI Hackathon, for scams where victims are tricked into sending the money themselves, like voice-clone family emergencies and fake CRA threats. The payment is held through PayPal, an AI agent reviews the scam message or voicemail, and the family member the story names must confirm with their own PayPal login before it is released or voided. Fixed red-flag rules set a minimum risk level that the AI can raise but never lower, and the AI has no direct access to payments. The demo runs on the PayPal sandbox with fake money, deployed on Render with Postgres and a scheduled job.",
+    category: "llm-rag",
+    tags: ["AI agents", "Hackathon", "Fraud prevention", "Payments", "Human in the loop"],
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Groq", "Gemini", "PayPal API", "Drizzle", "Render", "Vitest"],
+    year: 2026,
+    live: "https://suresend-71bi.onrender.com/judge",
+    metrics: [
+      { value: "0", label: "direct AI access to payments" },
+      { value: "3", label: "guided demo scenarios" },
+    ],
+  },
   {
     slug: "ai-agents-workshop",
     repo: "AI-Agents-From-Idea-to-Deployment",

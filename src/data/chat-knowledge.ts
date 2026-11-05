@@ -64,7 +64,7 @@ export function buildSystemPrompt(siteUrl: string, focus = ""): string {
     .join(" ");
   const honors = profile.honors.map((h) => `${h.title} (${h.year})`).join("; ");
   const pubs = profile.publications.map((p) => `"${p.title}" (${p.status.toLowerCase()})`).join("; ");
-  const skills = profile.skills.map((s) => `${s.group}: ${s.items.slice(0, 6).join(", ")}`).join(". ");
+  const skills = profile.skills.map((s) => `${s.group}: ${s.items.join(", ")}`).join(". ");
   const leadership = profile.leadership.map((l) => `${l.title} (${l.org})`).join("; ");
 
   const full: string[] = [];

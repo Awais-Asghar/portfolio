@@ -15,7 +15,7 @@ export const profile = {
   tagline:
     "Machine learning, deep learning, LLM apps and agents, from research models to systems that run on real hardware.",
   location: "Islamabad, Pakistan",
-  recentLocation: "Victoria, BC, Canada (Mitacs Globalink, summer 2026)",
+  recentLocation: "Victoria, BC, Canada (Mitacs Globalink, June to October 2026)",
   email: "awaisasghara786@gmail.com",
   links: {
     github: "https://github.com/Awais-Asghar",
@@ -45,8 +45,8 @@ export const profile = {
   ],
   about: [
     "I graduated in 2026 with a BE in Electrical Engineering from NUST, Islamabad, with a 3.63 CGPA and a 3.94 GPA in my specialization. My final year project was an FPGA hardware accelerator for real-time image segmentation: a custom U-Net compressed 56 times, quantized to INT8, and run on a Zybo Z7-20 at under 3 W.",
-    "Most of my work lives where machine learning meets constrained hardware. I have trained segmentation and classification models, deployed classical vision on a Jetson Nano, written RISC-V processors in SystemVerilog, and built RTOS firmware on STM32. Lately I have been shipping LLM products too: a RAG exam generator, a chat backend on Vercel, and a receipt-reading ledger app.",
-    "In summer 2026 I was a Mitacs Globalink research intern at the NRC Herzberg Astronomy and Astrophysics Research Centre in Victoria, Canada, training a spatiotemporal network to find faint Trans-Neptunian Objects in telescope image sequences.",
+    "Most of my work lives where machine learning meets constrained hardware. I have trained segmentation and classification models, deployed classical vision on a Jetson Nano, written RISC-V processors in SystemVerilog, and built RTOS firmware on STM32. Lately I have been shipping LLM products too: a RAG exam generator, a scam-safe payments agent, a chat backend on Vercel, and a receipt-reading ledger app.",
+    "From June to October 2026 I was a Mitacs Globalink research intern at the NRC Herzberg Astronomy and Astrophysics Research Centre in Victoria, Canada, building a deep learning system that finds faint Trans-Neptunian Objects by their slow motion between telescope images, across about 29 TB of survey data.",
   ],
   interests: [
     "Machine Learning",
@@ -76,11 +76,13 @@ export const profile = {
       role: "Mitacs Globalink Research Intern",
       org: "NRC Herzberg Astronomy & Astrophysics Research Centre",
       location: "Victoria, BC, Canada",
-      period: "Summer 2026",
+      period: "June 2026 – Oct 2026",
       supervisor: "Dr. Sébastien Fabbro",
       bullets: [
-        "Applied ML research on large astrophysical image datasets: built a variable-frame spatiotemporal U-Net that replaces classical shift-and-stack detection of Trans-Neptunian Objects.",
-        "Ran the full research loop on the CANFAR science platform: synthetic object injection with real PSFs, HDF5 data pipelines, training, evaluation and documentation.",
+        "Built a deep learning system in PyTorch that detects faint, icy objects in the outer solar system by spotting slow motion between telescope images taken hours apart, while stars stay fixed.",
+        "Processed the CFHT CLASSY survey (about 29 TB of images) on the CANFAR GPU cloud platform, and trained on synthetic objects injected into real images so the model learned from known answers.",
+        "Raised result reliability to 98.5% precision, up from 81%: 1,000 of 1,015 reported objects matched the survey's answer key.",
+        "Built a fully automatic search, with no human checking, that finds half of all objects down to magnitude 26 (about 100 million times fainter than the faintest star visible by eye), close to the survey team's manually verified 26.25.",
       ],
       tags: ["PyTorch", "Astronomy", "CANFAR", "HDF5"],
     },
@@ -158,7 +160,7 @@ export const profile = {
   honors: [
     {
       title: "Mitacs Globalink Research Internship",
-      detail: "Fully funded international research placement at NRC Herzberg, Canada, summer 2026.",
+      detail: "Fully funded international research placement at NRC Herzberg, Canada, June to October 2026.",
       year: "2026",
     },
     {
@@ -214,27 +216,51 @@ export const profile = {
   skills: [
     {
       group: "Machine learning & AI",
-      items: ["Python", "PyTorch", "TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "OpenCV", "SciPy", "CUDA"],
+      items: ["Python", "C / C++", "PyTorch", "TensorFlow", "Keras", "Scikit-learn", "XGBoost", "NumPy", "Pandas", "OpenCV", "SciPy", "CUDA"],
     },
     {
-      group: "LLMs & RAG",
-      items: ["LangChain", "Groq API", "Llama 3", "FAISS", "CrewAI", "Prompt engineering", "Vector search"],
+      group: "LLMs & GenAI",
+      items: ["LLMs", "Prompt engineering", "Function calling", "Structured output (JSON)", "RAG", "Advanced RAG", "HyDE", "Multi-Query", "CRAG", "Self-RAG", "Hybrid search", "Reranking", "Groq API", "Llama 3"],
     },
     {
-      group: "FPGA & digital design",
-      items: ["SystemVerilog", "Verilog", "RISC-V", "Vivado", "Vitis HLS", "Quartus", "ModelSim", "Zybo Z7-20", "Artix-7", "DE1-SoC"],
+      group: "Fine-tuning",
+      items: ["LoRA", "QLoRA", "PEFT", "Embedding fine-tuning", "Contrastive learning", "Unsloth", "Hugging Face Transformers", "Hugging Face Hub"],
+    },
+    {
+      group: "LLM frameworks",
+      items: ["LangChain (LCEL)", "LangGraph", "CrewAI", "Sentence-Transformers", "RAGAS", "DeepEval"],
+    },
+    {
+      group: "Vector search",
+      items: ["Qdrant", "FAISS", "Embeddings", "Semantic search", "BM25", "Chunking strategies"],
+    },
+    {
+      group: "Evaluation & observability",
+      items: ["RAG evaluation", "LLM-as-a-judge", "LangFuse", "Tracing", "Latency and cost monitoring"],
+    },
+    {
+      group: "Backend & web",
+      items: ["FastAPI", "REST APIs", "Pydantic", "Async programming", "pytest", "Node.js", "TypeScript", "JavaScript", "Next.js", "React"],
+    },
+    {
+      group: "Databases",
+      items: ["Supabase", "PostgreSQL", "MySQL", "SQL Server"],
+    },
+    {
+      group: "MLOps & DevOps",
+      items: ["CI/CD", "GitHub Actions", "Docker", "GitHub Container Registry", "Secrets management", "Model deployment", "Hugging Face Spaces", "Vercel", "Render"],
+    },
+    {
+      group: "Edge AI & FPGA",
+      items: ["Quantization", "Model compression", "Vitis HLS", "Vivado", "SystemVerilog", "Verilog", "RISC-V", "Quartus", "ModelSim", "Zybo Z7-20", "Artix-7", "DE1-SoC"],
     },
     {
       group: "Embedded systems",
-      items: ["STM32", "ESP32", "FreeRTOS", "Arduino / AVR", "Jetson Nano", "Pixhawk", "Embedded C", "UART / I2C / SPI"],
-    },
-    {
-      group: "Languages",
-      items: ["Python", "C / C++", "Embedded C", "TypeScript", "MATLAB / Simulink", "Assembly", "CUDA"],
+      items: ["STM32", "ESP32", "FreeRTOS", "Arduino / AVR", "Jetson Nano", "Pixhawk", "Embedded C", "Assembly", "MATLAB / Simulink", "UART / I2C / SPI"],
     },
     {
       group: "Data & tools",
-      items: ["Power BI", "Tableau", "Excel", "Matplotlib", "Seaborn", "Git / GitHub", "Linux", "Jupyter", "LaTeX", "Vercel"],
+      items: ["HDF5", "CANFAR", "Power BI", "Tableau", "Excel", "Matplotlib", "Seaborn", "Git / GitHub", "Linux", "Jupyter", "LaTeX"],
     },
   ],
   coursework: [
@@ -256,8 +282,9 @@ export const profile = {
   marquee: {
     ai: [
       "Machine Learning", "PyTorch", "Deep Learning", "TensorFlow", "Computer Vision", "OpenCV",
-      "LLMs", "LangChain", "RAG", "FAISS", "AI Agents", "CrewAI", "Python", "Keras",
-      "Scikit-learn", "CUDA", "Groq", "Llama 3",
+      "LLMs", "LangChain", "RAG", "FAISS", "AI Agents", "LangGraph", "Fine-Tuning", "Hugging Face",
+      "Vector Search", "Qdrant", "CrewAI", "Python", "Keras", "Scikit-learn", "FastAPI", "Docker",
+      "CUDA", "Groq", "Llama 3",
     ],
     hardware: [
       "FPGA", "SystemVerilog", "RISC-V", "Vivado", "Vitis HLS", "Zybo Z7-20", "Verilog", "Artix-7",

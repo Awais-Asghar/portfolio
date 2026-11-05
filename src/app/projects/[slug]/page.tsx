@@ -101,7 +101,10 @@ export default async function ProjectPage({ params }: Params) {
             {p.metrics && p.metrics.length > 0 && (
               <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-2">
                 {p.metrics.map((m) => (
-                  <div key={m.label} className="bg-paper p-4">
+                  <div
+                    key={m.label}
+                    className="bg-paper p-4 odd:last:col-span-2 sm:odd:last:col-span-1 lg:odd:last:col-span-2"
+                  >
                     <dd className="font-serif text-[1.9rem] font-medium leading-none">{m.value}</dd>
                     <dt className="mt-2 font-mono text-[0.66rem] uppercase tracking-[0.12em] text-muted">{m.label}</dt>
                   </div>

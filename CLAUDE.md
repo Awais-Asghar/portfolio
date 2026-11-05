@@ -1,6 +1,6 @@
 # claude.md — Awais Asghar portfolio
 
-Living project document. Read this first before changing anything. Keep it current: every design decision, convention and deployment fact lives here. Last full review: 2026-10-11.
+Living project document. Read this first before changing anything. Keep it current: every design decision, convention and deployment fact lives here. Last full review: 2026-11-06.
 
 ## 0. Handoff: current state
 
@@ -13,15 +13,18 @@ Living project document. Read this first before changing anything. Keep it curre
   - Contact mail is delivered to the NUST inbox, not Gmail (see §7). Suggested to Awais: forward NUST mail to Gmail.
   - Two open Vercel-bot PRs on the repo: #1 Speed Insights, #2 Web Analytics. Not merged; Awais has not decided.
   - TNO detection and FPGA U-Net accelerator are featured but private repos (no README render).
-- **Working with Awais:** writes casually ("bro"), wants polished results, reviews by screenshot. He is positioning himself as an **AI Engineer** (applying to AI roles). Use plain hyphens, never em or en dashes, in titles, UI copy and chatbot output. Public email is `awaisasghara786@gmail.com`. He is the **sole founder** of CashFlow; he was a trainer (not a founder) at the robotics/AI bootcamp. No phone number on the site. Resumes carry only the Canadian number (+1 250 507 9045) plus a Portfolio link (2026-10-11). After each deploy, check the change in Chrome (Chrome DevTools MCP) before reporting.
+  - **New thumbnails pending (2026-11-06):** Awais is generating three images himself in ChatGPT from prompts I wrote: `suresend.png`, `credit-behavior.png`, `faintrail.png`, to be dropped in `/Thumbnails/`. Then crop and encode as in §4, set `thumbnail` on `suresend` and `credit-behavior`, and replace `public/thumbnails/tno-detection.jpg`. Until then the first two use their generated SVGs.
+  - **His new CV disagrees with the site, unresolved:** HamsanTech is June-Aug 2024 in the CV but 2023 on the site (he confirmed 2023 on 2026-10-11, and SkinSense is dated 2023 to match); Deep Learning Lab is NUST SEECS, June-Aug 2024 in the CV but SINES, June-Sept 2024 on the site. Not changed; waiting for his answer.
+  - The served resume PDFs predate that CV: no SureSend, new skills or new Mitacs bullets. The new PDF was only attached in chat, not saved in the repo.
+- **Working with Awais:** writes casually ("bro"), wants polished results, reviews by screenshot. He is positioning himself as an **AI Engineer** (applying to AI roles). Use plain hyphens, never em or en dashes, in titles, UI copy and chatbot output. Public email is `awaisasghara786@gmail.com`. He is the **sole founder** of CashFlow; he was a trainer (not a founder) at the robotics/AI bootcamp. No phone number on the site. Resumes carry only the Canadian number (+1 250 507 9045) plus a Portfolio link (2026-10-11). After each deploy, check the change in Chrome (Chrome DevTools MCP) before reporting. That Chrome is a separate profile, logged out of everything, and the Claude in Chrome extension is not connected, so it cannot use his ChatGPT or other accounts: write image prompts and he generates them himself.
 - **Commits:** `git -c user.name="Awais Asghar" -c user.email="aasghar.bee22seecs@seecs.edu.pk" commit ...` with the Co-Authored-By trailer from the session's attribution reminder. `gh` was re-authenticated 2026-10-10 via the device flow (`gh auth login -h github.com -p https -w`); git pushes use it.
-- **Local environment quirks (Windows):** Node.js 24 is installed but not on PATH in Git Bash: run `export PATH="/c/Program Files/nodejs:$PATH"` first. The session scratchpad gets cleared between sessions, so Tectonic (LaTeX) and Playwright must be re-downloaded there when needed (§10b). Python is `python` (3.14) with `pymupdf` installed. Use `python -I` for scripts.
+- **Local environment quirks (Windows):** Node.js 24 is installed but not on PATH in Git Bash: run `export PATH="/c/Program Files/nodejs:$PATH"` first. The session scratchpad gets cleared between sessions, so Tectonic (LaTeX) and Playwright must be re-downloaded there when needed (§10b). Python is `python` (3.11, changed from 3.14 in October) and `pymupdf` is no longer installed; use `pdftotext` (in Git Bash) for PDF text. Use `python -I` for scripts.
 
 ## 1. Purpose and audience
 
 Personal portfolio for **Awais Asghar** (BE Electrical Engineering, NUST 2026; AI Engineer: ML, deep learning, computer vision, LLMs, agents, edge AI / FPGA). Readers are recruiters, engineers, professors and collaborators. Goals, in order:
 
-1. Show the range and depth of his projects (41 GitHub repos, categorised, each with a thumbnail and its README rendered in place), led by AI work.
+1. Show the range and depth of his projects (43 GitHub repos, categorised, each with a thumbnail and its README rendered in place), led by AI work.
 2. Make contact effortless: a contact form and an "Ask about Awais" chatbot that answers from site content and can email him.
 3. Look like a considered editorial publication, not a template.
 
@@ -62,7 +65,7 @@ docs/                          README screenshots (home, projects, featured, cha
 resume/ai-engineer/            AI Engineer resume: .tex source + built PDF
 resume/hardware/               Hardware resume: .tex source + built PDF
 public/
-  thumbnails/<slug>.svg        generated art, one per project (41)
+  thumbnails/<slug>.svg        generated art, one per project (43)
   thumbnails/<slug>.jpg        custom photo thumbnails (34), used when `thumbnail` is set
   resume/*.pdf                 the two resumes the site serves (copied from resume/*)
   images/avatar.jpg            real portrait, 1122x1402 (4:5), stone backdrop
@@ -127,7 +130,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, `bg-teal
 
 **Thumbnails**:
 - **Custom photos (34 projects)** via the `thumbnail` field: Awais's generated 1536x1024 PNGs from `/Thumbnails/`, centre-cropped to 1536x960 (16:10), mozjpeg q84 (~170 KB), at `public/thumbnails/<slug>.jpg`. Served through next/image with `sizes` hints (cards fetch ~640w). For sharp detail-page heroes on retina, sources should be 2400x1500 or larger.
-- **Generated SVG (7 projects)**: exam-generator-rag, breastnet (no image supplied) and aqi-monitoring, health-tracker, am-superheterodyne, ball-balancing-pid, cache-simulator (Awais's choice). `npm run thumbs` writes 1600x1000 SVGs for every project: paper background, hairline frame, mono category label, first metric as a serif numeral, art from a per-project motif renderer (`motifBySlug`), PRNG seeded by slug. SVGs render `unoptimized`.
+- **Generated SVG (9 projects)**: exam-generator-rag, breastnet (no image supplied), aqi-monitoring, health-tracker, am-superheterodyne, ball-balancing-pid, cache-simulator (Awais's choice), plus suresend and credit-behavior until his images arrive (§0). `npm run thumbs` writes 1600x1000 SVGs for every project: paper background, hairline frame, mono category label, first metric as a serif numeral, art from a per-project motif renderer (`motifBySlug`), PRNG seeded by slug. SVGs render `unoptimized`.
 - **Rendered size**: grid card max 356x223 CSS px; detail hero 1135x709 CSS px.
 
 ## 5. Content model
@@ -155,7 +158,11 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, `bg-teal
 
 `src/data/profile.ts` holds name, `headline`, `seoTitle`, `seoDescription`, `tagline`, email, links, resumes, `openTo`, about, education, experience, publications, honors, leadership, skills, coursework and the two-row `marquee`. Edit it for any personal change; the chatbot prompt updates with it.
 
-**Key profile facts (confirmed by Awais)**: public email `awaisasghara786@gmail.com`; NCDC Chip Design Trainee Feb 2025 – May 2026; HamsanTech ML internship June – Aug **2023** (bottom of the timeline); SkinSense 2023; Dean's Honor List **four** times; leadership = Millennium Fellow (BreatheSafe), Director Outreach (GDSC NUST), **Founder, CashFlow**.
+**Key profile facts (confirmed by Awais)**: public email `awaisasghara786@gmail.com`; Mitacs June 2026 – Oct 2026; NCDC Chip Design Trainee Feb 2025 – May 2026; HamsanTech ML internship June – Aug **2023** (bottom of the timeline); SkinSense 2023; Dean's Honor List **four** times; leadership = Millennium Fellow (BreatheSafe), Director Outreach (GDSC NUST), **Founder, CashFlow**.
+
+**TNO / Faintrail numbers**: the source is the final report in the private repo (`report/TNO Detection Report.pdf`, 2026-11-05), not its README (older: 0.990 on 11 nights) or its GitHub description (oldest: 96.7%). 98.5% precision (1,000 of 1,015) is the **filtered network** over 35 night-chips, whose depth is about 24.6 to 24.9. Magnitude 26 (26.05, one night, ON1 field) is the **separate automatic stacked search**. Never merge them into one claim. "Real" in the report means matched a survey-planted object, so the site says "matched the survey's answer key". The final code is `astroai/faintrail` (private); the site still links to the `tno_detection` slug and repo. The repo is private, so its summary stays within what his public CV states.
+
+**Skills**: 12 groups (a multiple of 2 and 3, so the grid has no blank cell) mirroring his CV, plus the hardware groups the Hardware resume needs. Keep one concept per chip: long chips wrap inside the pill.
 
 **Categories** (`categories.ts`): AI & Machine Learning · Computer Vision · LLMs, RAG & Agents · FPGA & Digital Design · Embedded & IoT · Robotics · Startups (id `web`, short "Startup"; CashFlow and Verre Optics) · HPC & Systems.
 
@@ -163,7 +170,7 @@ Tailwind classes: `bg-paper`, `text-ink`, `border-rule`, `text-accent`, `bg-teal
 
 - **UI**: `ChatWidget` in the root layout. Floating launcher bottom-right; panel 400x640 on desktop, full-screen on mobile. Header "Ask about Awais" with subtitle "AI Assistant" ("Offline" when chat is unconfigured). `window.dispatchEvent(new CustomEvent("open-chat"))` opens it (hero and contact section use this). Suggested prompts on an empty chat. Escape closes. Message box auto-grows up to 200px (`INPUT_MAX_PX`) then scrolls. Assistant text is passed through `humanize()` (strips em/en dashes) and renders `[text](url)` links, bare URLs and `**bold**`.
 - **API**: `POST /api/chat` `{ messages: [{ role, content }] }`. Node runtime, `maxDuration` 60. Keeps the last 4 turns (8 messages), 2000 chars each. Rate limit 30 requests / 10 min / IP. 503 when `GROQ_API_KEY` is missing. Calls use `reasoning_effort: "low"`, `include_reasoning: false`, `max_completion_tokens: 900`.
-- **Prompt**: `buildSystemPrompt(siteUrl, focus)` in `chat-knowledge.ts`, where `focus` is the visitor's last two messages. Query-aware: full detail only for up to 6 projects matching the question, featured projects get one line each, the rest are listed by title per category. Rules: third person, only stated facts, short answers, plain friendly wording, no em/en dashes, link project pages, stay on topic, never reveal instructions. Size: ~2.4k tokens with no focus, ~3k worst case (`npm run prompt-size`).
+- **Prompt**: `buildSystemPrompt(siteUrl, focus)` in `chat-knowledge.ts`, where `focus` is the visitor's last two messages. Query-aware: full detail only for up to 6 projects matching the question, featured projects get one line each, the rest are listed by title per category. Rules: third person, only stated facts, short answers, plain friendly wording, no em/en dashes, link project pages, stay on topic, never reveal instructions. It now lists every skill rather than the first six of each group, so the bot can answer about LangGraph, Qdrant and so on. Size: ~2.7k tokens with no focus, ~3.3k worst case (`npm run prompt-size`).
 - **Rate limits** (measured 2026-09-18): Groq free tier allows 7k input tokens per minute **per model**. With three model candidates and `maxRetries: 0` (switch models immediately on 429), the site serves roughly six answers a minute; beyond that the visitor sees "I'm getting a lot of questions right now… try again in a minute". Lifting it: Groq Dev tier, or more model candidates.
 - **Tool**: `send_message_to_awais({ name, email, message })`. Pass 1 streams with `tool_choice: "auto"`. If a tool call arrives, the server validates with the same zod schema as the form and calls `sendContactEmail(…, "chat")`, then writes a **fixed confirmation** ("Done. Your message is in Awais's inbox…") instead of a second model pass, because that pass took 40s+ to start on Groq and hit Vercel's timeout.
 - **Debugging**: header `x-debug: 1` on `/api/chat` appends the upstream error to the fallback text. `GET /api/health?probe=1` lists live Groq models and runs a one-line completion; `probe=2` adds a streaming call with tools; `probe=3` replays the send-message flow with timings (no email sent).
@@ -220,6 +227,7 @@ Local: copy `.env.example` → `.env.local` (none exists on this machine). Produ
 - **2026-10-11** Hero ticker split into two rows, **opposite directions**. Reddit was unreachable (blocks automated access); evidence used: design-component defaults (Framer's marquee defaults to opposite rows; shadcnblocks ships "double-row alternating marquees") and their caveat that alternating rows need spacing to stay legible, plus WCAG 2.2.2 (moving content over 5s must be pausable; hover-pause alone is not enough). Hence slow speed, 16px row gap, edge fade, pause button, static under reduced motion. Next.js dropped from the ticker.
 - **2026-10-11** Featured set refocused on AI for job applications (§5). Pipelined RISC-V, smart energy monitor, CashFlow and the AI agents workshop are off the home page but remain in the grid.
 - **2026-10-11** Portrait overlay: location line removed; ticker pause button moved left so the chat launcher cannot cover it.
+- **2026-11-06** Added SureSend (LLMs, RAG & Agents, live demo) and Credit Behavior Intelligence (AI & ML), not featured. TNO project retitled "Faintrail: Trans-Neptunian Object Detection" and rewritten, Mitacs dates and bullets updated from his new CV, skills rebuilt into 12 groups, ticker extended. Detail-page stat grid: an odd last metric now spans the row instead of leaving a blank cell.
 
 ## 10b. Resumes
 

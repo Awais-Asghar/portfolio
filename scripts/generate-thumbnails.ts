@@ -1287,6 +1287,8 @@ const motifBySlug: Record<string, MotifName> = {
   "stereo-depth-estimation": "stereo",
   "vehicle-detection": "traffic",
   "ai-agents-workshop": "agents",
+  suresend: "agents",
+  "credit-behavior": "outliers",
   "techstore-chatbot": "chat",
   "fyp-ai-accelerator": "circuit",
   "single-cycle-risc-v": "datapath",
