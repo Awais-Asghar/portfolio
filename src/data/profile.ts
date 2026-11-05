@@ -220,7 +220,7 @@ export const profile = {
     },
     {
       group: "LLMs & GenAI",
-      items: ["LLMs", "Prompt engineering", "Function calling", "Structured output (JSON)", "RAG", "Advanced RAG", "HyDE", "Multi-Query", "CRAG", "Self-RAG", "Hybrid search", "Reranking", "Groq API", "Llama 3"],
+      items: ["LLMs", "Prompt engineering", "Structured output (JSON)", "RAG", "Advanced RAG", "HyDE", "Multi-Query", "CRAG", "Self-RAG", "Hybrid search", "Reranking", "Groq API", "Llama 3"],
     },
     {
       group: "Fine-tuning",
