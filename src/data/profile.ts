@@ -101,9 +101,9 @@ export const profile = {
     },
     {
       role: "Deep Learning Research Intern",
-      org: "Deep Learning Lab, SINES, NUST",
+      org: "Deep Learning Lab (DLL), NUST SEECS",
       location: "Islamabad, Pakistan",
-      period: "June 2024 – Sept 2024",
+      period: "June 2024 – Aug 2024",
       supervisor: "Dr. Jameel Nawaz Malik",
       bullets: [
         "Built and evaluated CNN and transfer-learning models in PyTorch and TensorFlow with CUDA-accelerated training, focused on benchmarking and validation.",
@@ -111,15 +111,16 @@ export const profile = {
       tags: ["PyTorch", "TensorFlow", "CUDA"],
     },
     {
-      role: "Embedded Systems Design Research Intern",
-      org: "ESDAC Lab, NUST",
+      role: "Machine Learning Research Intern",
+      org: "HamsanTech, NSTP",
       location: "Islamabad, Pakistan",
-      period: "May 2024 – Aug 2024",
-      supervisor: "Dr. Usman Zabit",
+      period: "June 2024 – Aug 2024",
+      supervisor: "Dr. Nazia Perwaiz",
       bullets: [
-        "Developed and deployed Embedded Linux on FPGA and DE1-SoC boards: bootloaders, kernel configuration, GPIO, memory management and real-time processing.",
+        "Built a multi-model skin cancer classification pipeline (XGBoost, AdaBoost, LightGBM, SVM, logistic regression) reaching 91% accuracy and 0.963 AUC from a single RGB image.",
+        "Delivered Power BI and Tableau dashboards and exploratory analysis on real industry datasets.",
       ],
-      tags: ["Embedded Linux", "DE1-SoC", "Verilog", "Quartus"],
+      tags: ["Scikit-learn", "XGBoost", "Power BI", "Tableau"],
     },
     {
       role: "Robotics & AI Tutor",
@@ -133,16 +134,15 @@ export const profile = {
       tags: ["Teaching", "Robotics", "Mentoring"],
     },
     {
-      role: "Machine Learning Research Intern",
-      org: "HamsanTech, NSTP",
+      role: "Embedded Systems Design Research Intern",
+      org: "ESDAC Lab, NUST",
       location: "Islamabad, Pakistan",
-      period: "June 2023 – Aug 2023",
-      supervisor: "Dr. Nazia Perwaiz",
+      period: "May 2023 – Aug 2023",
+      supervisor: "Dr. Usman Zabit",
       bullets: [
-        "Built a multi-model skin cancer classification pipeline (XGBoost, AdaBoost, LightGBM, SVM, logistic regression) reaching 91% accuracy and 0.963 AUC from a single RGB image.",
-        "Delivered Power BI and Tableau dashboards and exploratory analysis on real industry datasets.",
+        "Developed and deployed Embedded Linux on FPGA and DE1-SoC boards: bootloaders, kernel configuration, GPIO, memory management and real-time processing.",
       ],
-      tags: ["Scikit-learn", "XGBoost", "Power BI", "Tableau"],
+      tags: ["Embedded Linux", "DE1-SoC", "Verilog", "Quartus"],
     },
   ],
   publications: [

@@ -53,7 +53,7 @@ export const projects: Project[] = [
     tags: ["Edge AI", "Segmentation", "Hardware accelerator", "Quantization", "FYP"],
     tech: ["SystemVerilog", "Vivado", "Vitis HLS", "PyTorch", "Python", "Zybo Z7-20", "PYNQ"],
     year: 2026,
-    featured: 4,
+    featured: 5,
     period: "2025 – 2026",
     isPrivate: true,
     metrics: [
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     tags: ["RAG", "LLM", "Vector search", "Education"],
     tech: ["Python", "LangChain", "FAISS", "Groq API", "Llama 3.1", "Sentence Transformers"],
     year: 2026,
-    featured: 3,
+    featured: 4,
     metrics: [
       { value: "5", label: "question types" },
       { value: "100%", label: "schema validation pass" },
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     tags: ["Classical CV", "Edge AI", "Industrial inspection", "Paper in progress"],
     tech: ["Python", "OpenCV", "NumPy", "SciPy", "scikit-image", "Jetson Nano"],
     year: 2025,
-    featured: 5,
+    featured: 6,
     metrics: [
       { value: "6", label: "independent detectors" },
       { value: "0", label: "neural networks" },
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     tags: ["Segmentation", "Autonomous driving", "Model compression", "Paper in progress"],
     tech: ["Python", "PyTorch", "TensorFlow", "OpenCV", "NumPy", "Kaggle"],
     year: 2025,
-    featured: 2,
+    featured: 3,
     metrics: [
       { value: "0.53M", label: "parameters (from 8.7M)" },
       { value: "72%", label: "IoU" },
@@ -231,8 +231,8 @@ export const projects: Project[] = [
     category: "ai-ml",
     tags: ["Medical imaging", "Ensemble", "Classification"],
     tech: ["Python", "Scikit-learn", "XGBoost", "LightGBM", "PyTorch", "Pandas"],
-    year: 2023,
-    featured: 6,
+    year: 2024,
+    featured: 7,
     metrics: [
       { value: "91%", label: "accuracy" },
       { value: "0.963", label: "AUC" },
@@ -250,7 +250,7 @@ export const projects: Project[] = [
     tags: ["Transfer learning", "Classification", "Sustainability"],
     tech: ["Python", "TensorFlow", "Keras", "EfficientNetB0", "OpenCV", "Kaggle"],
     year: 2025,
-    featured: 7,
+    featured: 8,
     metrics: [
       { value: "92.9%", label: "test accuracy" },
       { value: "0.93", label: "macro F1" },
@@ -436,7 +436,6 @@ export const projects: Project[] = [
     tags: ["Object detection", "Tracking", "YOLO"],
     tech: ["Python", "OpenCV", "YOLOv4", "PyTorch"],
     year: 2024,
-    featured: 8,
     metrics: [{ value: "90%", label: "detection accuracy" }],
   },
 
@@ -452,6 +451,7 @@ export const projects: Project[] = [
     tags: ["AI agents", "Hackathon", "Fraud prevention", "Payments", "Human in the loop"],
     tech: ["Next.js", "TypeScript", "PostgreSQL", "Groq", "Gemini", "PayPal API", "Drizzle", "Render", "Vitest"],
     year: 2026,
+    featured: 2,
     live: "https://suresend-71bi.onrender.com/judge",
     metrics: [
       { value: "0", label: "direct AI access to payments" },
