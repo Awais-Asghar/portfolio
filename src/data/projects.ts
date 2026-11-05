@@ -156,7 +156,7 @@ export const projects: Project[] = [
   {
     slug: "tno-detection",
     repo: "tno_detection",
-    thumbnail: "/thumbnails/tno-detection.jpg",
+    thumbnail: "/thumbnails/faintrail.jpg",
     title: "Faintrail: Trans-Neptunian Object Detection",
     tagline: "Deep learning that spots faint, icy objects beyond Neptune by their slow motion between telescope images.",
     summary:
@@ -206,6 +206,7 @@ export const projects: Project[] = [
   {
     slug: "credit-behavior",
     repo: "credit-behavior-intelligence",
+    thumbnail: "/thumbnails/credit-behavior.jpg",
     title: "Credit Behavior Intelligence",
     tagline: "A leakage-aware study of 30,000 credit-card customers with PCA, K-Means, DBSCAN and calibrated gradient boosting.",
     summary:
@@ -443,6 +444,7 @@ export const projects: Project[] = [
   {
     slug: "suresend",
     repo: "paypal-ai-hackathon",
+    thumbnail: "/thumbnails/suresend.jpg",
     title: "SureSend: Scam-Safe Payments",
     tagline: "An AI agent and a trusted family member must clear a held PayPal payment before any money moves.",
     summary:
